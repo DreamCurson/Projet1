@@ -1,14 +1,20 @@
 {{ include('layouts/header.php') }}
 
+{{ include('layouts/header.php') }}
+
 <body class="auth">
   <main class="auth__main">
     <section class="auth__welcome">
-      <h1 class="auth__welcome-title">Lord Stampee Reginald III vous souhaite la bienvenue</h1>
+      <h1 class="auth__welcome-title">Devenez membre et débloquer...</h1>
     </section>
 
     <section class="auth__section">
-      <h2 class="auth__section-title">Connexion</h2>
-      <form class="auth__form" method="post">
+      <h2 class="auth__section-title">Inscription</h2>
+      <form class="auth__form" method="POST" action="/register">
+        <div class="auth__field">
+          <label class="auth__label" for="username">Nom d'utilisateur</label>
+          <input class="auth__input" type="text" id="username" name="username" required>
+        </div>
         <div class="auth__field">
           <label class="auth__label" for="email">Email</label>
           <input class="auth__input" type="email" id="email" name="email" required>
@@ -17,11 +23,11 @@
           <label class="auth__label" for="password">Mot de passe</label>
           <input class="auth__input" type="password" id="password" name="password" required>
         </div>
-        <button class="auth__submit" type="submit">Connexion</button>
+        <button class="auth__submit" type="submit">S'inscrire</button>
       </form>
 
       <div class="auth__options">
-        <p class="auth__text">Pas encore membre ? <a class="auth__link" href="inscription">Inscription</a></p>
+        <p class="auth__text">Déjà membre ? <a class="auth__link" href="login">Connexion</a></p>
         <a class="auth__guest" href="guest">Continuer en tant qu'invité</a>
       </div>
     </section>
