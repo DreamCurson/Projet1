@@ -2,7 +2,7 @@
 use App\Routes\Route;
 
 // En débutant le site
-Route::get('/', 'ConnexionController@index');
-Route::post('/', 'ConnexionController@validate');
+Route::get('/', 'AuthController@index');
+Route::post('/', 'AuthController@validate');
 
 Route::dispatch();
