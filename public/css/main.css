@@ -5,6 +5,7 @@
 @import "base/texte.css";
 
 /* Composant */
+@import "composant/auth.css";
 @import "composant/navigation-enchere.css";
 @import "composant/bloc-enchere.css";
 @import "composant/filtre.css";
