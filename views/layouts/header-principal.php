@@ -73,14 +73,21 @@
                   </li>
                 </ul>
               </li>
-              <!-- Caché devenir membre si utilisateur connecté -->
-              <li class="navigation__element">
-                <a href="#">Devenir membre</a>
-              </li>
-              <!-- If permission dans la session 2 mettre se connecter, si 1 mettre option votre profil -->
-              <li class="navigation__element">
-                <a href="#">Se connecter</a>
-              </li>
+              {% if privilege_id == 2 %}
+                <li class="navigation__element">
+                  <a href="#">Devenir membre</a>
+                </li>
+              {% endif %}
+
+              {% if privilege_id == 2 %}
+                <li class="navigation__element">
+                  <a href="login">Se connecter</a>
+                </li>
+              {% elseif privilege_id == 1 %}
+                <li class="navigation__element">
+                  <a href="#">Votre profil</a>
+                </li>
+              {% endif %}
             </ul>
           </div>
         </div>

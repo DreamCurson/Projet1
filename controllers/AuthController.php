@@ -9,11 +9,15 @@ class AuthController{
 
     // Retourne à la page de connexion
     public function index(){
+        session_start();
+        session_destroy();
         return View::render("auth/index");
     }
 
     public function guest(){
-        return View::render("base/index");
+        session_start();
+        $_SESSION['privilege_id'] = 2;
+        return View::redirect('lordStampee');
     }
 
     // Retourne à la page d'inscription
