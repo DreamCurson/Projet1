@@ -1,17 +1,22 @@
 <?php
+
+use App\Controllers\AuthController;
 use App\Routes\Route;
 
-// En débutant le site
+// AuthController : Gestion d'inscription, connexion, déconnexion et connexion invité
 Route::get('/', 'AuthController@index');
 Route::get('/login', 'AuthController@index');
 Route::post('/', 'AuthController@validate');
 Route::post('/login', 'AuthController@validate');
+
+Route::get('/logout', 'AuthController@logout');
 
 Route::get('/inscription', 'AuthController@inscription');
 Route::post('/inscription', 'AuthController@create');
 
 Route::get('/guest', 'AuthController@guest');
 
+// BaseController : Gestion de la page principal
 Route::get('/lordStampee', 'BaseController@index');
 
 Route::dispatch();

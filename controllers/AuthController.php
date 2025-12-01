@@ -75,7 +75,9 @@ class AuthController{
     }
 
     public function logout(){
-        
+        session_start();
+        session_destroy();
+        return View::redirect("login");
     }
 
 }

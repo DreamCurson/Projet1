@@ -87,6 +87,9 @@
                 <li class="navigation__element">
                   <a href="#">Votre profil</a>
                 </li>
+                <li class="navigation__element">
+                  <a href="logout">Déconnexion</a>
+                </li>
               {% endif %}
             </ul>
           </div>
