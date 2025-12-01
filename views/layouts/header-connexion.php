@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lord Stampee</title>
     <link rel="stylesheet" href="{{ asset }}css/main.css" />
-    <script type="module" src="{{ asset }}script/main.js"></script>
   </head>
 
     <header>
