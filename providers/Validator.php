@@ -27,15 +27,15 @@ class Validator {
     }
 
     public function max($length){
-        if(strlen($this->value) > $length){
-            $this->errors[$this->key]="Doit contenir moins que $length caractères.";
+        if (!empty($this->value) && strlen($this->value) > $length) {
+            $this->errors[$this->key] = "Doit contenir moins que $length caractères.";
         }
         return $this;
     }
 
     public function min($length){
-        if(strlen($this->value) < $length){
-            $this->errors[$this->key]="Doit contenir plus que $length caractères.";
+        if (!empty($this->value) && strlen($this->value) < $length) {
+            $this->errors[$this->key] = "Doit contenir plus que $length caractères.";
         }
         return $this;
     }
@@ -49,7 +49,7 @@ class Validator {
 
     public function email() {
         if (!empty($this->value) && !filter_var($this->value, FILTER_VALIDATE_EMAIL)) {
-            $this->errors[$this->key]="Format invalide.";
+            $this->errors[$this->key]="Doit être un email ex: exemple@gmail.com";
         }
         return $this;
     }
@@ -63,7 +63,7 @@ class Validator {
         
         // Si la valeur n'est pas unique (le modèle retourne une valeur)
         if ($unique) {
-            $this->errors[$this->key] = "Ce $this->name est déjà utilisé.";
+            $this->errors[$this->key] = "Est déjà utilisé - Veuillez choisir un autre nom d'utilisateur";
         }
         
         return $this; 

@@ -13,6 +13,7 @@
 @import "composant/description-general.css";
 @import "composant/description.css";
 @import "composant/badge-banner.css";
+@import "composant/error.css";
 
 /* Composant utilisé avec le javascript */
 @import "composant/enchere.css";

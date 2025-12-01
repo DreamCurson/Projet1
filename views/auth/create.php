@@ -11,16 +11,25 @@
       <form class="auth__form" method="POST">
         <div class="auth__field">
           <label class="auth__label" for="name">Nom d'utilisateur</label>
-          <input class="auth__input" type="text" id="name" name="name">
+          <input class="auth__input" type="text" id="name" name="name" value="{{ utilisateur.name }}">
         </div>
+        {% if errors.name is defined %}
+            <span class="error">{{ errors.name }}</span>
+        {% endif %}
         <div class="auth__field">
           <label class="auth__label" for="email">Email</label>
-          <input class="auth__input" type="email" id="email" name="email">
+          <input class="auth__input" type="text" id="email" name="email" value="{{ utilisateur.email }}">
         </div>
+        {% if errors.email is defined %}
+          <span class="error">{{ errors.email }}</span>
+        {% endif %}
         <div class="auth__field">
           <label class="auth__label" for="password">Mot de passe</label>
           <input class="auth__input" type="password" id="password" name="password">
         </div>
+        {% if errors.password is defined %}
+          <span class="error">{{ errors.password }}</span>
+        {% endif %}
         <button class="auth__submit" type="submit">S'inscrire</button>
       </form>
 
