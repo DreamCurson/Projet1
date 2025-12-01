@@ -1,13 +1,12 @@
-{{ include('layouts/header.php') }}
+{{ include('layouts/header-connexion.php') }}
 
 <body class="auth">
   <main class="auth__main">
     <section class="auth__welcome">
-      <h1 class="auth__welcome-title">Lord Stampee Reginald III vous souhaite la bienvenue</h1>
+      <h1 class="auth__welcome-title">Connexion</h1>
     </section>
 
     <section class="auth__section">
-      <h2 class="auth__section-title">Connexion</h2>
       <form class="auth__form" method="post">
         <div class="auth__field">
           <label class="auth__label" for="email">Email</label>

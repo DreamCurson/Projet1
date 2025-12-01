@@ -1,6 +1,4 @@
-{{ include('layouts/header.php') }}
-
-{{ include('layouts/header.php') }}
+{{ include('layouts/header-connexion.php') }}
 
 <body class="auth">
   <main class="auth__main">
