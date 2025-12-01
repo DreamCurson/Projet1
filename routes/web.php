@@ -12,4 +12,6 @@ Route::post('/inscription', 'AuthController@create');
 
 Route::get('/guest', 'AuthController@guest');
 
+Route::get('/lordStampee', 'BaseController@index');
+
 Route::dispatch();

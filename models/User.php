@@ -18,6 +18,23 @@ class User extends CRUD {
         ];
         return password_hash($motDePasse, PASSWORD_BCRYPT, $options);
     }
+
+    public function checkUser($email, $password){
+        $utilisateur = $this->unique('email', $email);
+        if($utilisateur){
+            if(password_verify($password, $utilisateur['password'])){
+                session_start();
+                $_SESSION['user_id'] = $utilisateur['idUser'];
+                $_SESSION['user_name'] = $utilisateur['name'];
+                $_SESSION['privilege_id'] = $utilisateur['permision_idPermission'];
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
 }
 
 

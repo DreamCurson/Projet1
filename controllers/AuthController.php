@@ -48,6 +48,28 @@ class AuthController{
         }
     }
 
+    // Valide les informations de connexion
+    // Si valide crée la session et redirige à la page principal
+    // Si invalide retourne au formulaire de connexion avec les erreurs
+    public function validate($data){
+        $validator = new Validator;
+        $validator->field('email', $data['email'])->required()->email()->min(2)->max(150);
+        $validator->field('password', $data['password'])->required()->min(6)->max(30);
+        if($validator->isSuccess()){
+            $utilisateur = new User();
+            $checkuser = $utilisateur->checkUser($data['email'], $data['password']);
+            if($checkuser){
+                return View::redirect('lordStampee');
+            }else{
+                $errors['message'] = 'Information de connexion invalide';
+                return View::render('auth/index', ['errors'=>$errors, 'utilisateur'=>$data]);
+            }
+        }else{
+            $errors = $validator->getErrors();
+            return View::render('auth/index', ['errors'=>$errors, 'utilisateur'=>$data]);
+        }
+    }
+
     public function logout(){
         
     }

@@ -63,7 +63,7 @@ class Validator {
         
         // Si la valeur n'est pas unique (le modèle retourne une valeur)
         if ($unique) {
-            $this->errors[$this->key] = "Est déjà utilisé - Veuillez choisir un autre nom d'utilisateur";
+            $this->errors[$this->key] = "$this->name déjà utilisé";
         }
         
         return $this; 
