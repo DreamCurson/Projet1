@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lord Stampee</title>
     <link rel="stylesheet" href="{{ asset }}css/main.css" />
+    <script type="module" src="{{ asset }}script/burger/menu-burger.js"></script>
   </head>
 
   <body>
     <header>
       <nav class="navigation">
         <div class="navigation__top">
-          <img src="images/logo-bleu.png" alt="Logo" class="navigation__logo" />
+          <img src="{{ img }}logo-bleu.png" alt="Logo" class="navigation__logo" />
 
           <button class="navigation__burger" aria-label="Ouvrir le menu">
             <span></span>
@@ -75,15 +76,9 @@
               <li class="navigation__element">
                 <a href="#">Devenir membre</a>
               </li>
-              <li
-                class="navigation__element navigation__element--has-subcategories"
-              >
+              <!-- If permission dans la session 2 mettre se connecter, si 1 mettre option votre profil -->
+              <li class="navigation__element">
                 <a href="#">Se connecter</a>
-                <ul class="navigation__subcategories">
-                  <li class="navigation__subcategory">
-                    <a href="#">Votre profil</a>
-                  </li>
-                </ul>
               </li>
             </ul>
           </div>

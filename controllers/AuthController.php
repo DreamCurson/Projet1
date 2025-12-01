@@ -13,7 +13,7 @@ class AuthController{
     }
 
     public function guest(){
-    
+        return View::render("base/index");
     }
 
     // Retourne à la page d'inscription
