@@ -8,6 +8,8 @@ Route::post('/', 'AuthController@validate');
 Route::post('/login', 'AuthController@validate');
 
 Route::get('/inscription', 'AuthController@inscription');
+Route::post('/inscription', 'AuthController@create');
+
 Route::get('/guest', 'AuthController@guest');
 
 Route::dispatch();

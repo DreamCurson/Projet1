@@ -1,5 +1,6 @@
 <?php
 namespace App\Providers;
+use App\Models;
 
 class Validator {
     private $errors = array();
@@ -20,7 +21,7 @@ class Validator {
 
     public function required(){
         if(empty($this->value)){
-            $this->errors[$this->key]="Est requis.";
+            $this->errors[$this->key]="Veuillez remplir se champ";
         }
         return $this;
     }
@@ -51,6 +52,21 @@ class Validator {
             $this->errors[$this->key]="Format invalide.";
         }
         return $this;
+    }
+
+    public function unique($model) {
+        $model = 'App\\Models\\'.$model;
+        $model = new $model;
+        
+        // Appelle la méthode unique du CRUD pour vérifier si la valeur est unique
+        $unique = $model->unique($this->key, $this->value);
+        
+        // Si la valeur n'est pas unique (le modèle retourne une valeur)
+        if ($unique) {
+            $this->errors[$this->key] = "Ce $this->name est déjà utilisé.";
+        }
+        
+        return $this; 
     }
 
     public function isSuccess(){

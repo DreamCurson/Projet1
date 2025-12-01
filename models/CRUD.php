@@ -97,4 +97,24 @@ abstract class CRUD extends \PDO {
         }
 
     }
+
+    // Vérifie si une valeur est unique dans un champ spécifié de la table.
+    public function unique($field, $value) {
+        // Crée une requête SQL qui va rechercher une ligne où la colonne $field est égale à la valeur $value
+        $sql = "SELECT * FROM $this->table WHERE $field = :$field";
+        $stmt = $this->prepare($sql);
+        
+        // Lie la valeur :$field dans la requête à la valeur donnée $value
+        $stmt->bindValue(":$field", $value);
+
+        $stmt->execute();
+        $count = $stmt->rowCount();
+        
+        if($count == 1) {
+            return $stmt->fetch();
+        } else {
+            return false;
+        }
+    }
+
 }

@@ -7,6 +7,17 @@ class User extends CRUD {
     protected $primaryKey = "idUser";
     // idUser, name, email, password, permision_idPermission 
     protected $fillable = ['name', 'email', 'password']; 
+
+    /**
+     * Hache un mot de passe en utilisant l'algorithme BCRYPT.
+     * Le paramètre cost détermine la durée du calcul du hachage (nombre d'itérations)
+     */
+    public function hashPassword($motDePasse, $cost = 10){
+        $options = [ 
+            'cost' => $cost
+        ];
+        return password_hash($motDePasse, PASSWORD_BCRYPT, $options);
+    }
 }
 
 
