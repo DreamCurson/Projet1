@@ -73,6 +73,7 @@
                   </li>
                 </ul>
               </li>
+              <!-- Caché devenir membre si utilisateur connecté -->
               <li class="navigation__element">
                 <a href="#">Devenir membre</a>
               </li>
