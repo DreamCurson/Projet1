@@ -10,7 +10,7 @@
       <h2 class="auth__section-title">Inscription</h2>
       <form class="auth__form" method="POST">
         <div class="auth__field">
-          <label class="auth__label" for="name">Nom d'utilisateur</label>
+          <label class="auth__label" for="name">Nom d'utilisateur ou prénom</label>
           <input class="auth__input" type="text" id="name" name="name" value="{{ utilisateur.name }}">
         </div>
         {% if errors.name is defined %}
