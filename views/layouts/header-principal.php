@@ -75,7 +75,7 @@
               </li>
               {% if privilege_id == 2 %}
                 <li class="navigation__element">
-                  <a href="#">Devenir membre</a>
+                  <a href="inscription">Devenir membre</a>
                 </li>
               {% endif %}
 
@@ -85,7 +85,7 @@
                 </li>
               {% elseif privilege_id == 1 %}
                 <li class="navigation__element">
-                  <a href="#">Votre profil</a>
+                  <a href="profil">Votre profil</a>
                 </li>
                 <li class="navigation__element">
                   <a href="logout">Déconnexion</a>

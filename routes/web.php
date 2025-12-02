@@ -19,4 +19,6 @@ Route::get('/guest', 'AuthController@guest');
 // BaseController : Gestion de la page principal
 Route::get('/lordStampee', 'BaseController@index');
 
+Route::get('/profil', 'ClientController@index');
+
 Route::dispatch();

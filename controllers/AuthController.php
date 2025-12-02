@@ -22,6 +22,8 @@ class AuthController{
 
     // Retourne à la page d'inscription
     public function inscription(){
+        session_start();
+        session_destroy();
         return View::render("auth/create");
     }
 
@@ -75,8 +77,6 @@ class AuthController{
     }
 
     public function logout(){
-        session_start();
-        session_destroy();
         return View::redirect("login");
     }
 
