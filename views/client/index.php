@@ -8,7 +8,7 @@
         <span>{{utilisateur.name}}</span>
     </div>
 
-    <div class="profile-field">
+    <div class="profile-field profile-field__last">
         <label>Email :</label>
         <span>{{utilisateur.email}}</span>
     </div>

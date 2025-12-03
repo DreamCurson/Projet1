@@ -28,4 +28,21 @@ class ClientController{
         }
     }
 
+    public function edit($id = null){
+        if ($id === null && isset($_SESSION['user_id'])) {
+            $id = $_SESSION['user_id'];
+        }else{
+            return View::render('login');
+        }
+
+        $utilisateur = new User;
+        $selectId = $utilisateur->selectId($id);
+
+        if ($selectId) {
+            return View::render("client/edit", ['utilisateur' => $selectId, 'privilege_id' => $_SESSION['privilege_id']]);
+        }else{
+            return view::render('error');
+        }
+    }
+
 }
