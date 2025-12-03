@@ -22,5 +22,6 @@ Route::get('/lordStampee', 'BaseController@index');
 Route::get('/profil', 'ClientController@index');
 Route::get('/editProfil', 'ClientController@edit');
 Route::post('/editProfil', 'ClientController@update');
+Route::get('/deleteProfil', 'ClientController@delete');
 
 Route::dispatch();

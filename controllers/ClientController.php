@@ -90,8 +90,24 @@ class ClientController{
                 return View::render('client/edit', ['errors'=>$errors, 'utilisateur'=>$data]);
             }
         }else{
-            echo "no";
-            // return View::redirect('login');
+            return View::redirect('login');
+        }
+    }
+
+    public function delete($id = null){
+        if ($id === null && isset($_SESSION['user_id'])) {
+            $id = $_SESSION['user_id'];
+        }else{
+            return View::render('login');
+        }
+
+        $utilisateur = new User;
+        $delete = $utilisateur->delete($id);
+
+        if($delete){
+            return View::redirect('login');
+        }else{
+            return View::render('error', ['msg'=>'Impossible de supprimer votre compte !']);
         }
     }
 
