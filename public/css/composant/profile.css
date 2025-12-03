@@ -70,3 +70,8 @@
   color: var(--bleu-fonce);
   text-decoration: underline;
 }
+
+.password-hint {
+  font-size: 14px;
+  color: #666;
+}

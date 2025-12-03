@@ -26,6 +26,7 @@ class User extends CRUD {
                 session_start();
                 $_SESSION['user_id'] = $utilisateur['idUser'];
                 $_SESSION['user_name'] = $utilisateur['name'];
+                $_SESSION['user_email'] = $utilisateur['email'];
                 $_SESSION['privilege_id'] = $utilisateur['permision_idPermission'];
                 return true;
             }else{
