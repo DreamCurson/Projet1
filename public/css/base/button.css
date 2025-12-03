@@ -36,3 +36,22 @@
   background: var(--bleu-fonce);
   box-shadow: 0 4px 12px var(--bleu-basic-transparent);
 }
+
+.button--delete {
+  margin-top: 5px;
+  width: 100%;
+  padding: 12px;
+  background: var(--crimson);
+  color: var(--blanc);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: var(--lusitana);
+  transition: 0.25s ease;
+}
+
+.button--delete:hover {
+  background: var(--dark-crimson);
+  box-shadow: 0 4px 12px var(--crimson-transparent);
+}

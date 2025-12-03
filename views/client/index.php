@@ -14,4 +14,13 @@
     </div>
 
     <a href="editProfil"><button class="button--edit">Modifier vos informations</button></a>
+    <a href="deleteProfil" onclick="return confirmDelete();">
+        <button class="button--delete">Supprimer votre compte</button>
+    </a>
+    
+    <script>
+        function confirmDelete() {
+            return confirm("Êtes-vous sûr ? Cette action est permanente.");
+        }
+    </script>
 </div>
