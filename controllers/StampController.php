@@ -41,8 +41,6 @@ class StampController{
     }
 
     public function save($data){
-        // ["name"] ["dateCreated"] ["dimension"] ["condition_idCondition"] ["contry_idContry"] ["color_idColor"] ["draw"]
-        var_dump($data);
         $stamp = new Stamp;
         $validator = new Validator;
 
@@ -54,7 +52,32 @@ class StampController{
         $validator->field('contry_idContry', $data['contry_idContry'])->required()->int();
         $validator->field('color_idColor', $data['color_idColor'])->required()->int();
 
-        
+        if($validator->isSuccess()){
+            $insert = $stamp->insert($data);
+            if($insert){
+                return view::redirect('stamp');
+            }else{
+                return view::render('error');
+            }
+        }else{
+            $colorMod = new Color;
+            $condMod = new Condition;
+            $contryMod = new Contry;
+            $colors = $colorMod->select();
+            $conditions = $condMod->select();
+            $contries = $contryMod->select();
+
+            $errors = $validator->getErrors();
+            return view::render('stamp/create', [
+                'errors'=> $errors, 
+                'stamp' => $data,
+                'privilege_id' => $_SESSION['privilege_id'],
+                'user_idUser' => $_SESSION['user_id'],
+                'colors' => $colors,
+                'conditions' => $conditions,
+                'contries' => $contries
+            ]);
+        }
         
     }
 
