@@ -1,9 +1,14 @@
 <?php
 namespace App\Controllers;
 use App\Providers\View;
+use App\Providers\Validator;
+
+use App\Models\Stamp;
+
 use App\Models\Color;
 use App\Models\Condition;
 use App\Models\Contry;
+
 
 class StampController{
     public function __construct() {
@@ -35,7 +40,21 @@ class StampController{
         ]);
     }
 
-    public function save(){
+    public function save($data){
+        // ["name"] ["dateCreated"] ["dimension"] ["condition_idCondition"] ["contry_idContry"] ["color_idColor"] ["draw"]
+        var_dump($data);
+        $stamp = new Stamp;
+        $validator = new Validator;
+
+        $validator->field('name', $data['name'])->required()->min(5)->max(200);
+        $validator->field('dateCreated', $data['dateCreated'])->required();
+        $validator->field('dimension', $data['dimension'])->required()->max(45);
+        $validator->field('draw', $data['draw'])->max(60);
+        $validator->field('condition_idCondition', $data['condition_idCondition'])->required()->int();
+        $validator->field('contry_idContry', $data['contry_idContry'])->required()->int();
+        $validator->field('color_idColor', $data['color_idColor'])->required()->int();
+
+        
         
     }
 
