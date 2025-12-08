@@ -55,7 +55,7 @@
 
             <ul class="navigation__principal">
               <li class="navigation__element">
-                <a href="index.html">Enchères</a>
+                <a href="#">Enchères</a>
               </li>
               <li
                 class="navigation__element navigation__element--has-subcategories"
@@ -86,6 +86,9 @@
               {% elseif privilege_id == 1 %}
                 <li class="navigation__element">
                   <a href="profil">Votre profil</a>
+                </li>
+                <li class="navigation__element">
+                  <a href="stamp">Vos timbres</a>
                 </li>
                 <li class="navigation__element">
                   <a href="logout">Déconnexion</a>
