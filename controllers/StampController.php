@@ -55,7 +55,7 @@ class StampController{
         if($validator->isSuccess()){
             $insert = $stamp->insert($data);
             if($insert){
-                
+                return view::render('stamp');
             }else{
                 return view::render('error');
             }
