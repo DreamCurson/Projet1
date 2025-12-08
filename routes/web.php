@@ -25,5 +25,6 @@ Route::post('/editProfil', 'ClientController@update');
 Route::get('/deleteProfil', 'ClientController@delete');
 
 Route::get('/stamp', 'StampController@index');
+Route::get('/stampCreate', 'StampController@create');
 
 Route::dispatch();
