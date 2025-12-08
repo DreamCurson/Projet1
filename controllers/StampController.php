@@ -27,6 +27,7 @@ class StampController{
         $contries = $contryMod->select();
 
         return View::render("stamp/create", [
+            'privilege_id' => $_SESSION['privilege_id'],
             'user_idUser' => $_SESSION['user_id'],
             'colors' => $colors,
             'conditions' => $conditions,

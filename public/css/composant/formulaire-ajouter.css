@@ -1,0 +1,83 @@
+.formulaire-ajouter {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--bleu-pale);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: var(--lusitana);
+}
+
+.formulaire-ajouter__field {
+  margin-bottom: 16px;
+}
+
+.formulaire-ajouter__label {
+  font-size: 1rem;
+  color: var(--bleu-fonce);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.formulaire-ajouter__input,
+.formulaire-ajouter__select,
+.formulaire-ajouter__textarea {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid var(--bleu-fonce);
+  border-radius: 4px;
+  background-color: var(--blanc);
+  color: var(--bleu-fonce);
+  box-sizing: border-box;
+}
+
+.formulaire-ajouter__input:focus,
+.formulaire-ajouter__select:focus,
+.formulaire-ajouter__textarea:focus {
+  border-color: var(--bleu-basic);
+  outline: none;
+}
+
+.formulaire-ajouter__textarea {
+  resize: vertical;
+}
+
+.formulaire-ajouter__button {
+  background-color: var(--bleu-basic);
+  color: var(--blanc);
+  padding: 1rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.formulaire-ajouter__button:hover {
+  background-color: var(--bleu-fonce);
+}
+
+.formulaire-ajouter__return {
+  margin-top: 12px;
+  color: var(--crimson);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+  text-align: center;
+}
+
+.formulaire-ajouter__return:hover {
+  color: var(--bleu-fonce);
+}
+
+.formulaire-ajouter__select {
+  background-color: var(--blanc);
+}
+
+.formulaire-ajouter__option {
+  padding: 8px;
+  background-color: var(--blanc);
+}
