@@ -35,4 +35,8 @@ class StampController{
         ]);
     }
 
+    public function save(){
+        
+    }
+
 }
