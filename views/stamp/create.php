@@ -32,7 +32,11 @@
         <label for="condition_idCondition" class="formulaire-ajouter__label">Condition du timbre:</label>
         <select id="condition_idCondition" name="condition_idCondition" class="formulaire-ajouter__select">
             {% for condition in conditions %}
-                <option value="{{ condition.idCondition }}" class="formulaire-ajouter__option">{{ condition.cond }}</option>
+                <option value="{{ condition.idCondition }}"
+                    {% if condition.idCondition == stamp.condition_idCondition %}selected{% endif %}
+                    class="formulaire-ajouter__option">
+                    {{ condition.cond }}
+                </option>
             {% endfor %}
         </select>
     </div>
@@ -44,7 +48,13 @@
         <label for="contry_idContry" class="formulaire-ajouter__label">Pays du timbre:</label>
         <select id="contry_idContry" name="contry_idContry" class="formulaire-ajouter__select">
             {% for contry in contries %}
-                <option value="{{ contry.idContry }}" class="formulaire-ajouter__option">{{ contry.contry }}</option>
+                <option 
+                    value="{{ contry.idContry }}" 
+                    class="formulaire-ajouter__option"
+                    {% if contry.idContry == stamp.contry_idContry %}selected{% endif %}
+                >
+                    {{ contry.contry }}
+                </option>
             {% endfor %}
         </select>
     </div>
@@ -56,10 +66,17 @@
         <label for="color_idColor" class="formulaire-ajouter__label">Couleur du timbre:</label>
         <select id="color_idColor" name="color_idColor" class="formulaire-ajouter__select">
             {% for color in colors %}
-                <option value="{{ color.idColor }}" class="formulaire-ajouter__option">{{ color.color }}</option>
+                <option 
+                    value="{{ color.idColor }}" 
+                    class="formulaire-ajouter__option"
+                    {% if color.idColor == stamp.color_idColor %}selected{% endif %}
+                >
+                    {{ color.color }}
+                </option>
             {% endfor %}
         </select>
     </div>
+
     {% if errors.color_idColor is defined %}
         <span class="error">{{ errors.color_idColor }}</span>
     {% endif %}
@@ -73,5 +90,5 @@
     {% endif %}
 
     <button type="submit" class="formulaire-ajouter__button">Ajouter le timbre</button>
-    <a href="profil" class="formulaire-ajouter__return">Annuler</a>
+    <a href="stamp" class="formulaire-ajouter__return">Annuler</a>
 </form>
