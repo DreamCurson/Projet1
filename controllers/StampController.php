@@ -95,6 +95,10 @@ class StampController{
         $stampModel = new Stamp();
         $stamp = $stampModel->selectId($id);
 
+        if($stamp['user_idUser'] != $_SESSION['user_id']){
+            return View::redirect("login");
+        }
+
         $colorMod = new Color;
         $condMod = new Condition;
         $contryMod = new Contry;
