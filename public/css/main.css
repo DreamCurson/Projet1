@@ -16,6 +16,7 @@
 @import "composant/badge-banner.css";
 @import "composant/error.css";
 @import "composant/formulaire-ajouter.css";
+@import "composant/oneStamp.css";
 
 /* Composant utilisé avec le javascript */
 @import "composant/enchere.css";
