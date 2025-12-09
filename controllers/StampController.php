@@ -4,6 +4,7 @@ use App\Providers\View;
 use App\Providers\Validator;
 
 use App\Models\Stamp;
+use App\Models\Image;
 
 use App\Models\Color;
 use App\Models\Condition;
@@ -19,14 +20,24 @@ class StampController{
     }
 
     public function index(){
-        $stampModel = new Stamp;
+        $stampModel = new Stamp();
         $stamps = $stampModel->selectBy('user_idUser', $_SESSION['user_id']);
+
+        $imageModel = new Image();
+
+        // Lie les images avec leurs timbres
+        foreach ($stamps as &$stamp) {
+            $images = $imageModel->selectBy('timbre_idTimbre', $stamp['idTimbre']);
+            $stamp['images'] = $images;
+        }
+        unset($stamp);
 
         return View::render("stamp/index", [
             'privilege_id' => $_SESSION['privilege_id'],
             'stamps'       => $stamps
         ]);
     }
+
 
     public function create(){
         $colorMod = new Color;

@@ -5,10 +5,21 @@
 
         {% for stamp in stamps %}
             <div class="stamp-card">
+                {% if stamp.images is empty %}
+                    <a href="addImage?{{ stamp.idTimbre }}" class="stamp-card__notice">
+                        Ajouter une image à votre timbre !
+                    </a>
+                {% else %}
+                    <div class="stamp-card__images">
+                        {% for image in stamp.images %}
+                            <p>il y a une image</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
 
-                <h3>{{ stamp.name }}</h3>
+                <h3 class="stamp-card__title">{{ stamp.name }}</h3>
 
-                <a class="btn" href="stampShow?{{ stamp.idTimbre }}">
+                <a class="btn stamp-card__btn" href="stampShow?{{ stamp.idTimbre }}">
                     Voir le timbre
                 </a>
 
@@ -17,8 +28,9 @@
 
     </div>
 {% else %}
-    <p>Aucun timbre trouvé. Ajouté votre premier timbre</p>
+    <p>Aucun timbre trouvé. Ajoutez votre premier timbre !</p>
 {% endif %}
+
 
 <div>
     <a href="stampCreate" class="button_basic">Ajouter un timbre</a>
