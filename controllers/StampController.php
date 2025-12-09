@@ -83,8 +83,16 @@ class StampController{
                 'conditions' => $conditions,
                 'contries' => $contries
             ]);
-        }
-        
+        }   
+    }
+
+    public function show($data){
+        $id = array_key_first($data);
+
+        $stampModel = new Stamp();
+        $stamp = $stampModel->selectId($id);
+
+        var_dump($stamp);
     }
 
 }

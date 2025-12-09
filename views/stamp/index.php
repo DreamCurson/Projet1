@@ -8,7 +8,7 @@
 
                 <h3>{{ stamp.name }}</h3>
 
-                <a class="btn" href="show?{{ stamp.idTimbre }}">
+                <a class="btn" href="stampShow?{{ stamp.idTimbre }}">
                     Voir le timbre
                 </a>
 

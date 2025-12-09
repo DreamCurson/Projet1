@@ -27,5 +27,6 @@ Route::get('/deleteProfil', 'ClientController@delete');
 Route::get('/stamp', 'StampController@index');
 Route::get('/stampCreate', 'StampController@create');
 Route::post('/stampCreate', 'StampController@save');
+Route::get('/stampShow', 'StampController@show');
 
 Route::dispatch();
