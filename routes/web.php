@@ -30,5 +30,6 @@ Route::post('/stampCreate', 'StampController@save');
 Route::get('/stampShow', 'StampController@show');
 
 Route::get('/addImage', 'ImageController@index');
+Route::post('/addImage', 'ImageController@store');
 
 Route::dispatch();

@@ -22,4 +22,8 @@ class ImageController{
         ]);
     }
 
+    public function store($data){
+        var_dump($data);
+    }
+
 }
