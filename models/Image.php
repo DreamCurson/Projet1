@@ -5,7 +5,7 @@ use App\Models\CRUD;
 class Image extends CRUD {
     protected $table = "image";
     protected $primaryKey = "idImage";
-    protected $fillable = ['file', 'description', 'order', 'timbre_idTimbre']; 
+    protected $fillable = ['file', 'description', 'imageOrder', 'timbre_idTimbre']; 
 }
 
 ?>

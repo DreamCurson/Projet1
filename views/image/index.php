@@ -8,7 +8,7 @@
     <input type="text" name="description" required>
 
     <label>Ordre :</label>
-    <input type="number" name="order">
+    <input type="number" name="imageOrder">
 
     <input type="hidden" name="timbre_idTimbre" value="{{ idStamp }}">
 
