@@ -87,12 +87,29 @@ class StampController{
     }
 
     public function show($data){
-        $id = array_key_first($data);
+        $id = array_key_first($data);        
+        if (!$id) {
+            return View::redirect("login");
+        }
 
         $stampModel = new Stamp();
         $stamp = $stampModel->selectId($id);
 
-        var_dump($stamp);
+        $colorMod = new Color;
+        $condMod = new Condition;
+        $contryMod = new Contry;
+        $colors = $colorMod->select();
+        $conditions = $condMod->select();
+        $contries = $contryMod->select();
+
+        return view::render('stamp/show', [
+            'stamp' => $stamp,
+            'privilege_id' => $_SESSION['privilege_id'],
+            'colors' => $colors,
+            'conditions' => $conditions,
+            'contries' => $contries
+        ]);
+        
     }
 
 }
