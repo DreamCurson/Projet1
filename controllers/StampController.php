@@ -19,7 +19,13 @@ class StampController{
     }
 
     public function index(){
-        return View::render("stamp/index", ['privilege_id' => $_SESSION['privilege_id']]);
+        $stampModel = new Stamp;
+        $stamps = $stampModel->selectBy('user_idUser', $_SESSION['user_id']);
+
+        return View::render("stamp/index", [
+            'privilege_id' => $_SESSION['privilege_id'],
+            'stamps'       => $stamps
+        ]);
     }
 
     public function create(){
