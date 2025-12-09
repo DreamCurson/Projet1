@@ -38,7 +38,6 @@ class StampController{
         ]);
     }
 
-
     public function create(){
         $colorMod = new Color;
         $condMod = new Condition;
