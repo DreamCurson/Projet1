@@ -74,4 +74,8 @@ class ImageController{
         } 
     }
 
+    public function edit(){
+        echo "allo";
+    }
+
 }
