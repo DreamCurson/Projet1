@@ -93,10 +93,19 @@
 .red:hover {
   background-color: var(--dark-crimson) !important;
 }
+
 .green {
   background-color: var(--green) !important;
 }
 
 .green:hover {
   background-color: var(--green-dark) !important;
+}
+
+.greenlight {
+  background-color: var(--greenlight) !important;
+}
+
+.greenlight:hover {
+  background-color: var(--greenlight-dark) !important;
 }

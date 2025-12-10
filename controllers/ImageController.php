@@ -56,7 +56,7 @@ class ImageController{
             ]);
 
             if ($inserted) {
-                return View::redirect("stamp");
+                return View::redirect("stampShow?{$data['timbre_idTimbre']}");
             } else {
                 die("Erreur lors de l'insertion de l'image en base de données");
             }

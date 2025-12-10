@@ -42,10 +42,14 @@
 
     <div>
         <a class="oneStamp__backBtn green" href="stampEdit?{{ stamp.idTimbre }}">Modifier le timbre</a>
+        {% if stamp.images is not empty %}
         <a class="oneStamp__backBtn greenlight" href="stampEdit?{{ stamp.idTimbre }}">Modifier l'image</a>
+        {% else %}
+        <a href="addImage?{{ stamp.idTimbre }}" class="oneStamp__backBtn greenlight">Ajouter une image</a>
+        {% endif %}
         <a class="oneStamp__backBtn red" href="stampDelete?{{ stamp.idTimbre }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce timbre ? Cette action est permanente');">
             Supprimer le timbre
         </a>
     </div>
-    <a class="oneStamp__backBtn" href="stamp">Retour</a>
+    <a class="oneStamp__backBtn" href="stamp">❮‎ ‎ Retour</a>
 </div>
