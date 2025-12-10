@@ -19,9 +19,19 @@
                 <div class="stamp-card__text">
                     <h3 class="stamp-card__title">{{ stamp.name }}</h3>
 
-                    <a class="btn stamp-card__btn" href="stampShow?{{ stamp.idTimbre }}">
+                    <a class="stamp-card__btn" href="stampShow?{{ stamp.idTimbre }}">
                         Voir le timbre
                     </a>
+
+                    {% if stamp.images is not empty %}
+                        <a class="stamp-card__btn green" href="#">
+                            Créer une enchère
+                        </a>
+                    {% else %}
+                        <a class="stamp-card__btn red" href="#">
+                            Ajouter une image
+                        </a>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}

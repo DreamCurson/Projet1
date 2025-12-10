@@ -85,3 +85,18 @@
   background: var(--bleu-basic);
   box-shadow: 0 1px 2px var(--bleu-basic-transparent);
 }
+
+.red {
+  background-color: var(--crimson) !important;
+}
+
+.red:hover {
+  background-color: var(--dark-crimson) !important;
+}
+.green {
+  background-color: var(--green) !important;
+}
+
+.green:hover {
+  background-color: var(--green-dark) !important;
+}
