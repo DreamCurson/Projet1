@@ -150,6 +150,21 @@ class ImageController{
         }
     }
 
+    public function delete($data){
+        $id = array_key_first($data);        
+        if (!$id) {
+            return View::redirect("login");
+        }
+
+        $imageModel = new Image();
+        
+        $delete = $imageModel->delete($id);
+        if($delete){
+            return view::redirect("stamp");
+        }else{
+            return view::render('error');
+        }
+    }
 
 
 }

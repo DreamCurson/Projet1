@@ -36,5 +36,6 @@ Route::get('/addImage', 'ImageController@index');
 Route::post('/addImage', 'ImageController@store');
 Route::get('/imageEdit', 'ImageController@edit');
 Route::post('/imageEdit', 'ImageController@update');
+Route::get('/imageDelete', 'ImageController@delete');
 
 Route::dispatch();

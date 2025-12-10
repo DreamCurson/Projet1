@@ -35,6 +35,11 @@
     <input type="hidden" name="timbre_idTimbre" value="{{ idStamp }}">
 
     <button type="submit" class="formulaire-ajouter__button">Mettre à jour</button>
+    <a href="imageDelete?{{ image.idImage }}" 
+        class="formulaire-ajouter__return" 
+        onclick="return confirm('Voulez-vous vraiment supprimer cette image ?');">
+        Supprimer l'image
+    </a>
     <a href="stampShow?{{ idStamp }}" class="formulaire-ajouter__return">Annuler</a>
 </form>
 
