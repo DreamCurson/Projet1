@@ -28,6 +28,7 @@
 @import "layout/general.css";
 @import "layout/navigation.css";
 @import "layout/navigation-connexion.css";
+@import "layout/error-page.css";
 
 /* Font et variable */
 @import url("https://fonts.googleapis.com/css2?family=Lusitana:wght@400;700&display=swap");

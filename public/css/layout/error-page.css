@@ -1,0 +1,39 @@
+.logo_erreur {
+  display: block;
+  margin: 40px auto 20px auto;
+  max-width: 150px;
+}
+
+.error-page {
+  text-align: center;
+  padding: 60px 20px;
+  font-family: var(--lusitana);
+  color: var(--bleu-fonce);
+}
+
+.error-page__title {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: var(--crimson);
+}
+
+.error-page__message {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  color: var(--bleu-fonce);
+}
+
+.error-page__button {
+  background-color: var(--bleu-basic);
+  color: var(--blanc);
+  border: none;
+  padding: 12px 30px;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.error-page__button:hover {
+  background-color: var(--bleu-fonce);
+}

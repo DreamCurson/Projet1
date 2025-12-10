@@ -47,8 +47,9 @@ class Route {
         }
 
         http_response_code(404);
-        echo "404 Not Found";
-
+        \App\Providers\View::render('error', [
+            'message' => 'La page que vous cherchez est introuvable.'
+        ]);
     }
 }
 
