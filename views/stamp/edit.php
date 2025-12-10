@@ -2,7 +2,7 @@
 <h1 class="formulaire-ajouter__titre">Ajouter un timbre</h1>
 
 <form class="formulaire-ajouter" method="POST">
-    <input type="hidden" name="user_idUser" value="{{ user_idUser }}">
+    <input type="hidden" name="idTimbre" value="{{ idTimbre }}">
 
     <div class="formulaire-ajouter__field">
         <label for="name" class="formulaire-ajouter__label">Nom du timbre:</label>
@@ -90,5 +90,5 @@
     {% endif %}
 
     <button type="submit" class="formulaire-ajouter__button">Ajouter le timbre</button>
-    <a href="stamp" class="formulaire-ajouter__return">Annuler</a>
+    <a href="stampShow?{{ idTimbre }}" class="formulaire-ajouter__return">Annuler</a>
 </form>

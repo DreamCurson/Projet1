@@ -162,12 +162,54 @@ class StampController{
         $contries = $contryMod->select();
 
         return view::render('stamp/edit', [
+            'idTimbre' => $id,
             'stamp' => $stamp,
             'privilege_id' => $_SESSION['privilege_id'],
             'colors' => $colors,
             'conditions' => $conditions,
             'contries' => $contries
         ]);
+    }
+
+    public function update($data){
+        $stamp = new Stamp;
+        $validator = new Validator;
+
+        $validator->field('name', $data['name'])->required()->min(5)->max(200);
+        $validator->field('dateCreated', $data['dateCreated'])->required();
+        $validator->field('dimension', $data['dimension'])->required()->max(45);
+        $validator->field('draw', $data['draw'])->max(60);
+        $validator->field('condition_idCondition', $data['condition_idCondition'])->required()->int();
+        $validator->field('contry_idContry', $data['contry_idContry'])->required()->int();
+        $validator->field('color_idColor', $data['color_idColor'])->required()->int();
+
+        if($validator->isSuccess()){
+            $update = $stamp->update($data, $data['idTimbre']);
+            if($update){
+                return view::redirect("stampShow?{$data['idTimbre']}");
+            }else{
+                return view::render('error');
+            }
+            
+        }else{
+            $colorMod = new Color;
+            $condMod = new Condition;
+            $contryMod = new Contry;
+            $colors = $colorMod->select();
+            $conditions = $condMod->select();
+            $contries = $contryMod->select();
+
+            $errors = $validator->getErrors();
+            return view::render('stamp/edit', [
+                'errors'=> $errors, 
+                'stamp' => $data,
+                'privilege_id' => $_SESSION['privilege_id'],
+                'user_idUser' => $_SESSION['user_id'],
+                'colors' => $colors,
+                'conditions' => $conditions,
+                'contries' => $contries
+            ]);
+        } 
 
     }
 
