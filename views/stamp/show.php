@@ -7,7 +7,7 @@
             <img src="data:image/png;base64,{{ stamp.images[0].file }}" alt="Image du timbre">
         </div>
     {% else %}
-        <a href="addImage?{{ stamp.idTimbre }}" class="oneStamp__noImage">Ajouter une image au timbre </a>
+        <p class="oneStamp__noImage">Aucune image à ce jour</a>
     {% endif %}
 
 
