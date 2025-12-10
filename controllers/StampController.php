@@ -141,5 +141,34 @@ class StampController{
         ]);
     }
 
+    public function edit($data){
+        $id = array_key_first($data);        
+        if (!$id) {
+            return View::redirect("login");
+        }
+
+        $stampModel = new Stamp();
+        $stamp = $stampModel->selectId($id);
+
+        if ($stamp['user_idUser'] != $_SESSION['user_id']) {
+            return View::redirect("login");
+        }
+
+        $colorMod = new Color;
+        $condMod = new Condition;
+        $contryMod = new Contry;
+        $colors = $colorMod->select();
+        $conditions = $condMod->select();
+        $contries = $contryMod->select();
+
+        return view::render('stamp/edit', [
+            'stamp' => $stamp,
+            'privilege_id' => $_SESSION['privilege_id'],
+            'colors' => $colors,
+            'conditions' => $conditions,
+            'contries' => $contries
+        ]);
+
+    }
 
 }
