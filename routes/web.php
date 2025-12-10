@@ -28,6 +28,7 @@ Route::get('/stamp', 'StampController@index');
 Route::get('/stampCreate', 'StampController@create');
 Route::post('/stampCreate', 'StampController@save');
 Route::get('/stampShow', 'StampController@show');
+Route::get('/stampEdit', 'StampController@edit');
 
 Route::get('/addImage', 'ImageController@index');
 Route::post('/addImage', 'ImageController@store');

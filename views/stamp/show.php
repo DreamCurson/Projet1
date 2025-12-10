@@ -40,5 +40,6 @@
         {% endfor %}
     </p>
 
+     <a class="oneStamp__backBtn green" href="stampEdit">Modifier le timbre</a>
     <a class="oneStamp__backBtn" href="stamp">Retour</a>
 </div>
