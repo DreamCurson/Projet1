@@ -210,7 +210,22 @@ class StampController{
                 'contries' => $contries
             ]);
         } 
+    }
 
+    public function delete($data){
+        $id = array_key_first($data);        
+        if (!$id) {
+            return View::redirect("login");
+        }
+
+        $stampModel = new Stamp();
+        
+        $delete = $stampModel->delete($id);
+        if($delete){
+            return view::redirect("stamp");
+        }else{
+            return view::render('error');
+        }
     }
 
 }

@@ -30,6 +30,7 @@ Route::post('/stampCreate', 'StampController@save');
 Route::get('/stampShow', 'StampController@show');
 Route::get('/stampEdit', 'StampController@edit');
 Route::post('/stampEdit', 'StampController@update');
+Route::get('/stampDelete', 'StampController@delete');
 
 Route::get('/addImage', 'ImageController@index');
 Route::post('/addImage', 'ImageController@store');
