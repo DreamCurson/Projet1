@@ -102,7 +102,7 @@ class StampController{
         }   
     }
 
-    public function show($data){
+   public function show($data) {
         $id = array_key_first($data);        
         if (!$id) {
             return View::redirect("login");
@@ -111,9 +111,19 @@ class StampController{
         $stampModel = new Stamp();
         $stamp = $stampModel->selectId($id);
 
-        if($stamp['user_idUser'] != $_SESSION['user_id']){
+        if ($stamp['user_idUser'] != $_SESSION['user_id']) {
             return View::redirect("login");
         }
+
+        $imageModel = new Image();
+        $images = $imageModel->selectBy('timbre_idTimbre', $stamp['idTimbre']);
+
+        // Encode
+        foreach ($images as &$img) {
+            $img['file'] = base64_encode($img['file']);
+        }
+        unset($img);
+        $stamp['images'] = $images;
 
         $colorMod = new Color;
         $condMod = new Condition;
@@ -129,7 +139,7 @@ class StampController{
             'conditions' => $conditions,
             'contries' => $contries
         ]);
-        
     }
+
 
 }

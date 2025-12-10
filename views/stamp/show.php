@@ -2,6 +2,14 @@
 
 <div class="oneStamp">
     <h2 class="oneStamp__title">{{ stamp.name }}</h2>
+    {% if stamp.images is not empty %}
+        <div class="oneStamp__image">
+            <img src="data:image/png;base64,{{ stamp.images[0].file }}" alt="Image du timbre">
+        </div>
+    {% else %}
+        <a href="addImage?{{ stamp.idTimbre }}" class="oneStamp__noImage">Ajouter une image au timbre </a>
+    {% endif %}
+
 
     <p class="oneStamp__field"><strong>Date de création :</strong> {{ stamp.dateCreated|date('Y-m-d') }}</p>
     <p class="oneStamp__field"><strong>Dimensions :</strong> {{ stamp.dimension }}</p>
