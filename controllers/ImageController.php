@@ -90,10 +90,66 @@ class ImageController{
         $image['file'] = base64_encode($image['file']);
 
         return View::render("image/edit", [
+            'privilege_id' => $_SESSION['privilege_id'],
             'image' => $image,
             'idStamp' => $image['timbre_idTimbre']
         ]);
     }
+
+    public function update($data){
+        $idImage = $data['idImage'];
+
+        $validator = new Validator();
+        $validator->field('description', $data['description'])->required()->min(5)->max(60);
+
+        // Types de fichiers autorisés
+        $allowedTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+
+        // Vérifie si un fichier a été envoyé
+        $fileProvided = isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK;
+        // Vérifie si le fichier envoyé est valide
+        $fileValid = $fileProvided && in_array($_FILES['file']['type'], $allowedTypes);
+
+        // Si la validation passe et le fichier est valide ou non fourni
+        if ($validator->isSuccess() && (!$fileProvided || $fileValid)) {
+            $dataToUpdate = [
+                'description' => $data['description'],
+                'order' => $data['imageOrder'] ?? 1
+            ];
+
+            // Si nouveau fichier, ajout à data
+            if ($fileProvided) {
+                $dataToUpdate['file'] = file_get_contents($_FILES['file']['tmp_name']);
+            }
+
+            $imageModel = new Image();
+            $updated = $imageModel->update($dataToUpdate, $idImage);
+
+            if ($updated) {
+                return View::redirect("stampShow?{$data['timbre_idTimbre']}");
+            } else {
+                return View::render('error', ['message'=>'Erreur avec la modification de l\'image !']);
+            }
+        } else {
+            $errors = $validator->getErrors();
+            if ($fileProvided && !$fileValid) {
+                $errors['message'] = 'Votre image doit être un PNG, JPG ou JPEG';
+            }
+
+            $imageModel = new Image();
+            $currentImage = $imageModel->selectId($idImage);
+            $currentImage['file'] = base64_encode($currentImage['file']);
+
+            return view::render('image/edit', [
+                'errors' => $errors,
+                'image' => $currentImage,
+                'idStamp' => $data['timbre_idTimbre'],
+                'privilege_id' => $_SESSION['privilege_id'],
+                'user_idUser' => $_SESSION['user_id'],
+            ]);
+        }
+    }
+
 
 
 }
