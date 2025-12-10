@@ -74,8 +74,26 @@ class ImageController{
         } 
     }
 
-    public function edit(){
-        echo "allo";
+    public function edit($data){
+        $id = array_key_first($data);        
+        if (!$id) {
+            return View::redirect("login");
+        }
+
+        $imageModel = new Image();
+        $image = $imageModel->selectId($id);
+
+        if (!$image) {
+            return View::redirect("error");
+        }
+
+        $image['file'] = base64_encode($image['file']);
+
+        return View::render("image/edit", [
+            'image' => $image,
+            'idStamp' => $image['timbre_idTimbre']
+        ]);
     }
+
 
 }
