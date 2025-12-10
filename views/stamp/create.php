@@ -1,5 +1,5 @@
 {{ include('layouts/header-principal.php') }}
-<h1>Ajouter un timbre</h1>
+<h1 class="formulaire-ajouter__titre">Ajouter un timbre</h1>
 
 <form class="formulaire-ajouter" method="POST">
     <input type="hidden" name="user_idUser" value="{{ user_idUser }}">

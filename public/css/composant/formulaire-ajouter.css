@@ -1,3 +1,9 @@
+.formulaire-ajouter__titre {
+  font-size: 25px;
+  text-align: center;
+  padding: 1.5rem;
+}
+
 .formulaire-ajouter {
   display: flex;
   flex-direction: column;
