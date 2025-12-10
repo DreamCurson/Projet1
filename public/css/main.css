@@ -17,6 +17,7 @@
 @import "composant/error.css";
 @import "composant/formulaire-ajouter.css";
 @import "composant/oneStamp.css";
+@import "composant/stamplist.css";
 
 /* Composant utilisé avec le javascript */
 @import "composant/enchere.css";

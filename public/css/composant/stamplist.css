@@ -1,0 +1,79 @@
+.stamp-list {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.stamp-card {
+  background: var(--blanc);
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 3px 10px var(--bleu-transparent);
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.stamp-card:hover {
+  box-shadow: 0 6px 18px var(--bleu-fonce-transparent);
+}
+
+.stamp-card__images img {
+  width: 100%;
+  max-height: 180px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: var(--bleu-pale);
+}
+
+.stamp-card__notice {
+  width: 100%;
+  min-height: 180px;
+  object-fit: contain;
+  display: block;
+  padding: 25px;
+  border: 2px dashed var(--bleu-basic);
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--bleu-basic);
+  text-decoration: none;
+  background: var(--bleu-basic-transparent);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.stamp-card__notice:hover {
+  border-color: var(--bleu-fonce);
+  color: var(--bleu-fonce);
+  background: var(--bleu-pale-fond);
+}
+
+.stamp-card__title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--bleu-fonce);
+}
+
+.stamp-card__btn {
+  background: var(--bleu-basic);
+  color: var(--blanc) !important;
+  padding: 10px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.stamp-card__btn:hover {
+  background: var(--bleu-fonce);
+}
+
+.stamp-card__text {
+  display: flex;
+  flex-direction: column;
+}

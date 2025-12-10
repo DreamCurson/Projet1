@@ -1,8 +1,7 @@
 {{ include('layouts/header-principal.php') }}
 {% if stamps is not empty %}
+    <h2>Vos timbres :</h2>
     <div class="stamp-list">
-        <h2>Vos timbres :</h2>
-
         {% for stamp in stamps %}
             <div class="stamp-card">
                 {% if stamp.images is empty %}
@@ -17,13 +16,13 @@
                     </div>
                 {% endif %}
 
+                <div class="stamp-card__text">
+                    <h3 class="stamp-card__title">{{ stamp.name }}</h3>
 
-                <h3 class="stamp-card__title">{{ stamp.name }}</h3>
-
-                <a class="btn stamp-card__btn" href="stampShow?{{ stamp.idTimbre }}">
-                    Voir le timbre
-                </a>
-
+                    <a class="btn stamp-card__btn" href="stampShow?{{ stamp.idTimbre }}">
+                        Voir le timbre
+                    </a>
+                </div>
             </div>
         {% endfor %}
 
