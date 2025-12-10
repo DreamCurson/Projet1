@@ -1,6 +1,6 @@
 {{ include('layouts/header-principal.php') }}
 {% if stamps is not empty %}
-    <h2>Vos timbres :</h2>
+    <h2 class="stamp-list__title">Vos timbres :</h2>
     <div class="stamp-list">
         {% for stamp in stamps %}
             <div class="stamp-card">
@@ -38,7 +38,7 @@
 
     </div>
 {% else %}
-    <p>Aucun timbre trouvé. Ajoutez votre premier timbre !</p>
+    <p class="stamp-card__notice-text">Aucun timbre trouvé. Ajoutez votre premier timbre !</p>
 {% endif %}
 
 

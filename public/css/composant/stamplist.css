@@ -80,3 +80,16 @@
   display: flex;
   flex-direction: column;
 }
+
+.stamp-card__notice-text {
+  color: var(--bleu-basic);
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 20px;
+}
+
+.stamp-list__title {
+  font-size: 20px;
+  color: var(--bleu-basic);
+  margin: 20px;
+}
