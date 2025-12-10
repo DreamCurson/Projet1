@@ -26,8 +26,14 @@ class StampController{
         $imageModel = new Image();
 
         // Lie les images avec leurs timbres
-        foreach ($stamps as &$stamp) {
+       foreach ($stamps as &$stamp) {
             $images = $imageModel->selectBy('timbre_idTimbre', $stamp['idTimbre']);
+
+            foreach ($images as &$img) {
+                $img['file'] = base64_encode($img['file']); // ENCODE HERE
+            }
+            unset($img);
+
             $stamp['images'] = $images;
         }
         unset($stamp);

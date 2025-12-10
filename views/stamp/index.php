@@ -12,10 +12,11 @@
                 {% else %}
                     <div class="stamp-card__images">
                         {% for image in stamp.images %}
-                            <p>il y a une image</p>
+                            <img src="data:image/png;base64,{{ image.file }}" alt="{{ image.description }}">
                         {% endfor %}
                     </div>
                 {% endif %}
+
 
                 <h3 class="stamp-card__title">{{ stamp.name }}</h3>
 
