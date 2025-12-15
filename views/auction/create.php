@@ -2,7 +2,7 @@
 <h1 class="formulaire-ajouter__titre">Créer l'enchère pour le timbre {{ timbreName }}</h1>
 
 <form class="formulaire-ajouter" method="POST">
-    <input type="" name="timbre_idTimbre" value="{{ id }}">
+    <input type="hidden" name="timbre_idTimbre" value="{{ id }}">
 
     <div class="formulaire-ajouter__field">
         <label for="name" class="formulaire-ajouter__label">Nom de l'enchère :</label>

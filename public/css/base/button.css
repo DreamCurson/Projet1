@@ -109,3 +109,19 @@
 .greenlight:hover {
   background-color: var(--greenlight-dark) !important;
 }
+
+.yellow {
+  background-color: var(--yellow) !important;
+}
+
+.yellow:hover {
+  background-color: var(--yellow-dark) !important;
+}
+
+.yellow-orange {
+  background-color: var(--grey) !important;
+}
+
+.yellow-orange:hover {
+  background-color: var(--grey-dark) !important;
+}

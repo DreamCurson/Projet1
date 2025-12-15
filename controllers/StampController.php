@@ -5,6 +5,7 @@ use App\Providers\Validator;
 
 use App\Models\Stamp;
 use App\Models\Image;
+use App\Models\Auction;
 
 use App\Models\Color;
 use App\Models\Condition;
@@ -20,29 +21,56 @@ class StampController{
     }
 
     public function index(){
-        $stampModel = new Stamp();
-        $stamps = $stampModel->selectBy('user_idUser', $_SESSION['user_id']);
+    $stampModel = new Stamp();
+    $stamps = $stampModel->selectBy('user_idUser', $_SESSION['user_id']);
 
-        $imageModel = new Image();
+    $imageModel = new Image();
+    $auctionModel = new Auction();
 
-        // Lie les images avec leurs timbres
-       foreach ($stamps as &$stamp) {
-            $images = $imageModel->selectBy('timbre_idTimbre', $stamp['idTimbre']);
+    foreach ($stamps as &$stamp) {
+        $images = $imageModel->selectBy('timbre_idTimbre', $stamp['idTimbre']);
 
-            foreach ($images as &$img) {
-                $img['file'] = base64_encode($img['file']); // ENCODE HERE
-            }
-            unset($img);
-
-            $stamp['images'] = $images;
+        foreach ($images as &$img) {
+            $img['file'] = base64_encode($img['file']); // ENCODE HERE
         }
-        unset($stamp);
+        unset($img);
 
-        return View::render("stamp/index", [
+        $stamp['images'] = $images;
+
+        // Valide si une enchère est présente pour le timbre
+        $auction = $auctionModel->selectBy('timbre_idTimbre', $stamp['idTimbre']);
+
+        // Si l'enchère existe
+        if (!empty($auction)) {
+            $currentDate = date('Y-m-d H:i:s');
+            $auction = $auction[0];
+
+            // Valide si une enchère est courament active
+            if ($currentDate >= $auction['dateStart'] && $currentDate <= $auction['dateEnd']) {
+                $stamp['has_active_auction'] = true;
+                $stamp['auction_status'] = 'active';
+            }
+
+            elseif ($currentDate < $auction['dateStart']) {
+                $stamp['has_active_auction'] = true;
+                $stamp['auction_status'] = 'upcoming';
+                $stamp['auction_start_date'] = $auction['dateStart'];
+            }
+            else {
+                $stamp['has_active_auction'] = false;
+            }
+        } else {
+            $stamp['has_active_auction'] = false;
+        }
+    }
+    unset($stamp);
+
+    return View::render("stamp/index", [
             'privilege_id' => $_SESSION['privilege_id'],
             'stamps'       => $stamps
         ]);
     }
+
 
     public function create(){
         $colorMod = new Color;
