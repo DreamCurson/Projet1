@@ -24,7 +24,7 @@
                     </a>
 
                     {% if stamp.images is not empty %}
-                        <a class="stamp-card__btn green" href="#">
+                        <a class="stamp-card__btn green" href="auctionCreate">
                             Créer une enchère
                         </a>
                     {% else %}

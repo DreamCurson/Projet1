@@ -38,4 +38,6 @@ Route::get('/imageEdit', 'ImageController@edit');
 Route::post('/imageEdit', 'ImageController@update');
 Route::get('/imageDelete', 'ImageController@delete');
 
+Route::get('/auctionCreate', 'AuctionController@create');
+
 Route::dispatch();
