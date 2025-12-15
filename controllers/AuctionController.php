@@ -5,17 +5,63 @@ use App\Providers\Validator;
 
 use App\Models\Auction;
 use App\Models\Stamp;
+use App\Models\Image;
 
 
 class AuctionController{
     public function __construct() {
         session_start();
-        if ($_SESSION['privilege_id'] != 1) {
+        if (!isset($_SESSION['privilege_id'])) {
             return View::redirect("login");
         }
     }
 
+    public function index() {
+        $auctionModel = new Auction();
+        $auctions = $auctionModel->select(); 
+        
+        $imageModel = new Image();
+
+        $currentDate = date('Y-m-d');
+
+        // Traiter chaque enchère
+        foreach ($auctions as &$auction) {
+            // Vérifier si l'enchère a commencé, est active, ou est terminée
+            if ($currentDate >= $auction['dateStart'] && $currentDate <= $auction['dateEnd']) {
+                $auction['status'] = 'active';
+            } elseif ($currentDate < $auction['dateStart']) {
+                $auction['status'] = 'upcoming';
+                $auction['start_date'] = $auction['dateStart'];
+            } else {
+                $auction['status'] = 'ended';
+                $auction['end_date'] = $auction['dateEnd'];
+            }
+
+            // Récupérer les images associées à cette enchère
+            $images = $imageModel->selectBy('timbre_idTimbre', $auction['timbre_idTimbre']);
+
+            // encoder image en base64
+            foreach ($images as &$img) {
+                $img['file'] = base64_encode($img['file']);
+            }
+            unset($img);
+
+            // Assigne image à l'enchère
+            $auction['images'] = $images;
+        }
+
+        return View::render('auction/index', [
+            'privilege_id' => $_SESSION['privilege_id'],
+            'auctions' => $auctions
+        ]);
+    }
+
+
     public function create($data){
+        session_start();
+        if ($_SESSION['privilege_id'] != 1) {
+            return View::redirect("login");
+        }
         $id = array_key_first($data);        
         if (!$id) {
             return View::redirect("login");
@@ -29,6 +75,10 @@ class AuctionController{
     }
 
     public function store($data){
+        session_start();
+        if ($_SESSION['privilege_id'] != 1) {
+            return View::redirect("login");
+        }
         $validator = new Validator;
         $validator->field('name', $data['name'])->required()->min(2)->max(45);
         $validator->field('description', $data['description'])->required()->min(10)->max(500);

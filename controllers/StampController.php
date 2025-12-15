@@ -31,7 +31,7 @@ class StampController{
         $images = $imageModel->selectBy('timbre_idTimbre', $stamp['idTimbre']);
 
         foreach ($images as &$img) {
-            $img['file'] = base64_encode($img['file']); // ENCODE HERE
+            $img['file'] = base64_encode($img['file']); // ENCODE
         }
         unset($img);
 
@@ -58,7 +58,7 @@ class StampController{
             }
             // Si l'enchère est terminée
             elseif ($currentDate > $auction['dateEnd']) {
-                $stamp['has_active_auction'] = false;
+                $stamp['has_active_auction'] = true;
                 $stamp['auction_status'] = 'ended';
                 $stamp['auction_end_date'] = $auction['dateEnd'];
             }

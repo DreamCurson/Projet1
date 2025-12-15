@@ -55,7 +55,7 @@
 
             <ul class="navigation__principal">
               <li class="navigation__element">
-                <a href="#">Enchères</a>
+                <a href="auction">Enchères</a>
               </li>
               <li
                 class="navigation__element navigation__element--has-subcategories"
