@@ -69,17 +69,29 @@ class Validator {
         return $this; 
     }
 
-    public function afterDate($compareDate){
-        $dateStart = new \DateTime($this->value);
-        $dateEnd = new \DateTime($compareDate);
+    public function afterDate($compareDate) {
+        $this->value = trim($this->value);
+        $compareDate = trim($compareDate);
 
-        // Verifie si dateEnd est avant ou la même que dateStart
+        $timezone = new \DateTimeZone('UTC');
+        
+        $dateStart = \DateTime::createFromFormat('Y-m-d', $compareDate, $timezone);
+        $dateEnd = \DateTime::createFromFormat('Y-m-d', $this->value, $timezone);
+
+        if (!$dateStart || !$dateEnd) {
+            $this->errors[$this->key] = "Les dates sont au format incorrect.";
+            return $this;
+        }
+
         if ($dateEnd <= $dateStart) {
-            $this->errors[$this->key] = "$this->name doit être après la date de début";
+            $this->errors[$this->key] = "La date de fin doit être après la date de début";
         }
 
         return $this;
     }
+
+
+
 
     public function isSuccess(){
         if(empty($this->errors)) return true;

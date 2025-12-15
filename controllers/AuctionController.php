@@ -4,6 +4,7 @@ use App\Providers\View;
 use App\Providers\Validator;
 
 use App\Models\Auction;
+use App\Models\Stamp;
 
 
 class AuctionController{
@@ -19,8 +20,11 @@ class AuctionController{
         if (!$id) {
             return View::redirect("login");
         }
+
+        $stamp = new Stamp();
+        $stampData = $stamp->selectId($id);
         
-        return view::render('auction/create', ['id' => $id]);
+        return view::render('auction/create', ['id' => $id, 'privilege_id' => $_SESSION['privilege_id'], 'timbreName' => $stampData['name']]);
 
     }
 
@@ -37,13 +41,14 @@ class AuctionController{
             $insert = $auction->insert($data);
 
             if($insert){
-                echo "réussi";
+                 return view::redirect("stamp");
             }else{
-
+                return view::render('error');
             }
         }else{
+            $id = $data['timbre_idTimbre'];
             $errors = $validator->getErrors();
-            return View::render('auction/create', ['errors'=>$errors, 'auction'=>$data]);
+            return View::render('auction/create', ['errors'=>$errors, 'auction'=>$data, 'privilege_id' => $_SESSION['privilege_id'], 'id' => $id]);
         }
 
     }

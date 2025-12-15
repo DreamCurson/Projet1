@@ -1,8 +1,8 @@
 {{ include('layouts/header-principal.php') }}
-<h1 class="formulaire-ajouter__titre">Créer l'enchère pour le timbre </h1>
+<h1 class="formulaire-ajouter__titre">Créer l'enchère pour le timbre {{ timbreName }}</h1>
 
 <form class="formulaire-ajouter" method="POST">
-    <input type="hidden" name="timbre_idTimbre" value="{{ id or auction.timbre_idTimbre }}">
+    <input type="" name="timbre_idTimbre" value="{{ id }}">
 
     <div class="formulaire-ajouter__field">
         <label for="name" class="formulaire-ajouter__label">Nom de l'enchère :</label>
@@ -47,7 +47,7 @@
             id="startPrize"
             name="startPrize"
             class="formulaire-ajouter__input"
-            step="0.50"
+            step="0.01"
             min="0.01"
             value="{{ auction.startPrize }}"
         >
