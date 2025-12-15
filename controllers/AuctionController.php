@@ -58,7 +58,6 @@ class AuctionController{
 
 
     public function create($data){
-        session_start();
         if ($_SESSION['privilege_id'] != 1) {
             return View::redirect("login");
         }
@@ -75,7 +74,6 @@ class AuctionController{
     }
 
     public function store($data){
-        session_start();
         if ($_SESSION['privilege_id'] != 1) {
             return View::redirect("login");
         }
@@ -104,7 +102,23 @@ class AuctionController{
     }
 
    public function show($data) {
+        if ($_SESSION['privilege_id'] != 1) {
+            return View::redirect("login");
+        }
+
+        $id = isset($_GET['id']) ? $_GET['id'] : null;
+        if (!$id) {
+            return View::redirect("login");
+        }
+
+        $auctionModel = new Auction();
+        $auction = $auctionModel->selectId($id);
+
+        return View::render('auction/show', [
+            'auction' => $auction
+        ]);
     }
+
 
     public function edit($data){
     }

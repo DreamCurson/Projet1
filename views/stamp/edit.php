@@ -89,6 +89,6 @@
         <span class="error">{{ errors.draw }}</span>
     {% endif %}
 
-    <button type="submit" class="formulaire-ajouter__button">Ajouter le timbre</button>
+    <button type="submit" class="formulaire-ajouter__button">Modifier le timbre</button>
     <a href="stampShow?{{ idTimbre }}" class="formulaire-ajouter__return">Annuler</a>
 </form>

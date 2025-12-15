@@ -40,6 +40,7 @@ Route::get('/imageDelete', 'ImageController@delete');
 
 Route::get('/auctionCreate', 'AuctionController@create');
 Route::post('/auctionCreate', 'AuctionController@store');
+Route::get('/auctionDetail', 'AuctionController@show');
 Route::get('/auction', 'AuctionController@index');
 
 Route::dispatch();

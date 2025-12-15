@@ -21,60 +21,60 @@ class StampController{
     }
 
     public function index(){
-    $stampModel = new Stamp();
-    $stamps = $stampModel->selectBy('user_idUser', $_SESSION['user_id']);
+        $stampModel = new Stamp();
+        $stamps = $stampModel->selectBy('user_idUser', $_SESSION['user_id']);
 
-    $imageModel = new Image();
-    $auctionModel = new Auction();
+        $imageModel = new Image();
+        $auctionModel = new Auction();
 
-    foreach ($stamps as &$stamp) {
-        $images = $imageModel->selectBy('timbre_idTimbre', $stamp['idTimbre']);
+        foreach ($stamps as &$stamp) {
+            $images = $imageModel->selectBy('timbre_idTimbre', $stamp['idTimbre']);
+            foreach ($images as &$img) {
+                $img['file'] = base64_encode($img['file']); // ENCODE
+            }
+            unset($img);
 
-        foreach ($images as &$img) {
-            $img['file'] = base64_encode($img['file']); // ENCODE
+            $stamp['images'] = $images;
+
+            // Valide qu'une enchère existe sur le timbre
+            $auction = $auctionModel->selectBy('timbre_idTimbre', $stamp['idTimbre']);
+
+            // Si l'enchère existe
+            if (!empty($auction)) {
+                $currentDate = date('Y-m-d H:i:s');
+                $auction = $auction[0];
+
+                // Ajoute l'id de l'enchère dans les données du timbre
+                $stamp['auction_id'] = $auction['idAuction'];
+
+                // Si l'enchère est active
+                if ($currentDate >= $auction['dateStart'] && $currentDate <= $auction['dateEnd']) {
+                    $stamp['has_active_auction'] = true;
+                    $stamp['auction_status'] = 'active';
+                }
+                // Si l'enchère n'est pas commencé encore
+                elseif ($currentDate < $auction['dateStart']) {
+                    $stamp['has_active_auction'] = true;
+                    $stamp['auction_status'] = 'upcoming';
+                    $stamp['auction_start_date'] = $auction['dateStart'];
+                }
+                // Si l'enchère est terminé
+                elseif ($currentDate > $auction['dateEnd']) {
+                    $stamp['has_active_auction'] = true;
+                    $stamp['auction_status'] = 'ended';
+                    $stamp['auction_end_date'] = $auction['dateEnd'];
+                }
+            } else {
+                $stamp['has_active_auction'] = false;
+            }
         }
-        unset($img);
+        unset($stamp);
 
-        $stamp['images'] = $images;
-
-        // Valide si une enchère est présente pour le timbre
-        $auction = $auctionModel->selectBy('timbre_idTimbre', $stamp['idTimbre']);
-
-        // Si l'enchère existe
-        if (!empty($auction)) {
-            $currentDate = date('Y-m-d H:i:s');
-            $auction = $auction[0];
-
-            // Valide si une enchère est couramment active
-            if ($currentDate >= $auction['dateStart'] && $currentDate <= $auction['dateEnd']) {
-                $stamp['has_active_auction'] = true;
-                $stamp['auction_status'] = 'active';
-            }
-            // Si l'enchère n'est pas encore commencée
-            elseif ($currentDate < $auction['dateStart']) {
-                $stamp['has_active_auction'] = true;
-                $stamp['auction_status'] = 'upcoming';
-                $stamp['auction_start_date'] = $auction['dateStart'];
-            }
-            // Si l'enchère est terminée
-            elseif ($currentDate > $auction['dateEnd']) {
-                $stamp['has_active_auction'] = true;
-                $stamp['auction_status'] = 'ended';
-                $stamp['auction_end_date'] = $auction['dateEnd'];
-            }
-        } else {
-            $stamp['has_active_auction'] = false;
-        }
-
-    }
-    unset($stamp);
-
-    return View::render("stamp/index", [
+        return View::render("stamp/index", [
             'privilege_id' => $_SESSION['privilege_id'],
             'stamps'       => $stamps
         ]);
     }
-
 
     public function create(){
         $colorMod = new Color;
