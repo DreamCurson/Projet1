@@ -45,23 +45,27 @@ class StampController{
             $currentDate = date('Y-m-d H:i:s');
             $auction = $auction[0];
 
-            // Valide si une enchère est courament active
+            // Valide si une enchère est couramment active
             if ($currentDate >= $auction['dateStart'] && $currentDate <= $auction['dateEnd']) {
                 $stamp['has_active_auction'] = true;
                 $stamp['auction_status'] = 'active';
             }
-
+            // Si l'enchère n'est pas encore commencée
             elseif ($currentDate < $auction['dateStart']) {
                 $stamp['has_active_auction'] = true;
                 $stamp['auction_status'] = 'upcoming';
                 $stamp['auction_start_date'] = $auction['dateStart'];
             }
-            else {
+            // Si l'enchère est terminée
+            elseif ($currentDate > $auction['dateEnd']) {
                 $stamp['has_active_auction'] = false;
+                $stamp['auction_status'] = 'ended';
+                $stamp['auction_end_date'] = $auction['dateEnd'];
             }
         } else {
             $stamp['has_active_auction'] = false;
         }
+
     }
     unset($stamp);
 

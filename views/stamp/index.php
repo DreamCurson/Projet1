@@ -26,14 +26,19 @@
 
                     {% if stamp.has_active_auction %}
                         {% if stamp.auction_status == 'active' %}
-                            <!-- Enchere en cours -->
+                            <!-- Enchère en cours -->
                             <a class="stamp-card__btn yellow" href="auctionDetail?{{ stamp.idTimbre }}">
                                 Enchère en cours
                             </a>
                         {% elseif stamp.auction_status == 'upcoming' %}
-                            <!-- L'enchere na pas commencer encore -->
+                            <!-- L'enchère n'a pas commencé encore -->
                             <a class="stamp-card__btn yellow-orange" href="auctionDetail?{{ stamp.idTimbre }}">
                                 L'enchère débute le {{ stamp.auction_start_date | date('d/m/y') }}
+                            </a>
+                        {% elseif stamp.auction_status == 'ended' %}
+                            <!-- L'enchère est terminée -->
+                            <a class="stamp-card__btn red" href="auctionDetail?{{ stamp.idTimbre }}">
+                                L'enchère à terminée le {{ stamp.auction_end_date | date('d/m/y') }}
                             </a>
                         {% endif %}
                     {% elseif stamp.images is not empty %}
