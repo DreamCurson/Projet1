@@ -83,7 +83,7 @@
 
     <div class="formulaire-ajouter__field">
         <label for="draw" class="formulaire-ajouter__label">Dessin:</label>
-        <textarea id="draw" name="draw" class="formulaire-ajouter__textarea" rows="4" value="{{ stamp.draw }}"></textarea>
+        <textarea id="draw" name="draw" class="formulaire-ajouter__textarea" rows="4">{{ stamp.draw }}</textarea>
     </div>
     {% if errors.draw is defined %}
         <span class="error">{{ errors.draw }}</span>

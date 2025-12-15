@@ -14,7 +14,14 @@ class AuctionController{
         }
     }
 
-    public function create(){
+    public function create($data){
+        $id = array_key_first($data);        
+        if (!$id) {
+            return View::redirect("login");
+        }
+        
+        return view::render('auction/create', ['id' => $id]);
+
     }
 
     public function save($data){

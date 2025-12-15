@@ -18,6 +18,7 @@
 
 .formulaire-ajouter__field {
   margin-bottom: 16px;
+  flex-grow: 1;
 }
 
 .formulaire-ajouter__label {
@@ -86,4 +87,11 @@
 .formulaire-ajouter__option {
   padding: 8px;
   background-color: var(--blanc);
+}
+
+.formulaire-ajouter__flex {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
 }
