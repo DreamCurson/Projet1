@@ -114,10 +114,28 @@ class AuctionController{
         $auctionModel = new Auction();
         $auction = $auctionModel->selectId($id);
 
+        if ($auction) {
+            $currentDate = date('Y-m-d H:i:s');
+
+            if ($currentDate > $auction['dateEnd']) {
+                $auction['status'] = 'ended';
+                $auction['end_date'] = $auction['dateEnd'];
+            } elseif ($currentDate < $auction['dateStart']) {
+                $auction['status'] = 'upcoming';
+                $auction['start_date'] = $auction['dateStart'];
+            } else {
+                $auction['status'] = 'active';
+            }
+        } else {
+            return View::redirect("error");
+        }
+
         return View::render('auction/show', [
             'auction' => $auction
         ]);
     }
+
+
 
 
     public function edit($data){
@@ -127,6 +145,22 @@ class AuctionController{
     }
 
     public function delete($data){
+        if ($_SESSION['privilege_id'] != 1) {
+            return View::redirect("login");
+        }
+        $id = array_key_first($data);        
+        if (!$id) {
+            return View::redirect("login");
+        }
+
+        $auctionModel = new Auction();
+        
+        $delete = $auctionModel->delete($id);
+        if($delete){
+            return view::redirect("stamp");
+        }else{
+            return view::render('error');
+        }
     }
 
 }

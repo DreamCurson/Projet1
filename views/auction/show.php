@@ -16,11 +16,14 @@
         <p class="oneStamp__field"><strong>Statut :</strong> Terminé le {{ auction.end_date|date('Y-m-d') }}</p>
     {% endif %}
 
-    <div>
-        <a class="oneStamp__backBtn green" href="auctionEdit?{{ auction.idAuction }}">Modifier l'enchère</a>
-        <a class="oneStamp__backBtn red" href="auctionDelete?{{ auction.idAuction }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette enchère ? Cette action est permanente');">
-            Supprimer l'enchère
-        </a>
-    </div>
+    {% if auction.status != 'ended' %}
+        <div>
+            <a class="oneStamp__backBtn green" href="auctionEdit?{{ auction.idAuction }}">Modifier l'enchère</a>
+            <a class="oneStamp__backBtn red" href="auctionDelete?{{ auction.idAuction }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette enchère ? Cette action est permanente');">
+                Supprimer l'enchère
+            </a>
+        </div>
+    {% endif %}
+    
     <a class="oneStamp__backBtn" href="stamp">❮‎ ‎ Retour</a>
 </div>
