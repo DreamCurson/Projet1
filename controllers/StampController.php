@@ -178,7 +178,7 @@ class StampController{
         $validator->field('name', $data['name'])->required()->min(5)->max(200);
         $validator->field('dateCreated', $data['dateCreated'])->required();
         $validator->field('dimension', $data['dimension'])->required()->max(45);
-        $validator->field('draw', $data['draw'])->max(60);
+        $validator->field('draw', $data['draw'])->max(200);
         $validator->field('condition_idCondition', $data['condition_idCondition'])->required()->int();
         $validator->field('contry_idContry', $data['contry_idContry'])->required()->int();
         $validator->field('color_idColor', $data['color_idColor'])->required()->int();
