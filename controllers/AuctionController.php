@@ -24,7 +24,28 @@ class AuctionController{
 
     }
 
-    public function save($data){
+    public function store($data){
+        $validator = new Validator;
+        $validator->field('name', $data['name'])->required()->min(2)->max(45);
+        $validator->field('description', $data['description'])->required()->min(10)->max(500);
+        $validator->field('dateStart', $data['dateStart'])->required();
+        $validator->field('dateEnd', $data['dateEnd'])->required()->afterDate($data['dateStart']);
+        $validator->field('startPrize', $data['startPrize'])->required();
+
+        if($validator->isSuccess()){
+            $auction = new Auction();
+            $insert = $auction->insert($data);
+
+            if($insert){
+                echo "réussi";
+            }else{
+
+            }
+        }else{
+            $errors = $validator->getErrors();
+            return View::render('auction/create', ['errors'=>$errors, 'auction'=>$data]);
+        }
+
     }
 
    public function show($data) {

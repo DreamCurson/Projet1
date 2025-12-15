@@ -39,5 +39,6 @@ Route::post('/imageEdit', 'ImageController@update');
 Route::get('/imageDelete', 'ImageController@delete');
 
 Route::get('/auctionCreate', 'AuctionController@create');
+Route::post('/auctionCreate', 'AuctionController@store');
 
 Route::dispatch();

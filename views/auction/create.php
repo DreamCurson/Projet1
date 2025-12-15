@@ -2,7 +2,7 @@
 <h1 class="formulaire-ajouter__titre">Créer l'enchère pour le timbre </h1>
 
 <form class="formulaire-ajouter" method="POST">
-    <input type="hidden" name="timbre_idTimbre" value="{{ id }}">
+    <input type="hidden" name="timbre_idTimbre" value="{{ id or auction.timbre_idTimbre }}">
 
     <div class="formulaire-ajouter__field">
         <label for="name" class="formulaire-ajouter__label">Nom de l'enchère :</label>
@@ -33,10 +33,10 @@
     </div>
     {% if errors.dateStart is defined %}
         <span class="error">{{ errors.dateStart }}</span>
-    {% endif %}
-        {% if errors.dateEnd is defined %}
+    {% elseif errors.dateEnd is defined %}
         <span class="error">{{ errors.dateEnd }}</span>
     {% endif %}
+
 
     <div class="formulaire-ajouter__field">
         <label for="startPrize" class="formulaire-ajouter__label">
@@ -56,9 +56,6 @@
     {% if errors.startPrize is defined %}
         <span class="error">{{ errors.startPrize }}</span>
     {% endif %}
-
-
-
 
     <button type="submit" class="formulaire-ajouter__button">Ajouter le timbre</button>
     <a href="stamp" class="formulaire-ajouter__return">Annuler</a>

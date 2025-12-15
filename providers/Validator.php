@@ -69,6 +69,18 @@ class Validator {
         return $this; 
     }
 
+    public function afterDate($compareDate){
+        $dateStart = new \DateTime($this->value);
+        $dateEnd = new \DateTime($compareDate);
+
+        // Verifie si dateEnd est avant ou la même que dateStart
+        if ($dateEnd <= $dateStart) {
+            $this->errors[$this->key] = "$this->name doit être après la date de début";
+        }
+
+        return $this;
+    }
+
     public function isSuccess(){
         if(empty($this->errors)) return true;
     }
