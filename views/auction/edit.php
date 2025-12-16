@@ -1,5 +1,5 @@
 {{ include('layouts/header-principal.php') }}
-<h1 class="formulaire-ajouter__titre">Créer l'enchère pour le timbre {{ timbreName }}</h1>
+<h1 class="formulaire-ajouter__titre">Modifier votre enchère</h1>
 
 <form class="formulaire-ajouter" method="POST">
     <input type="hidden" name="timbre_idTimbre" value="{{ id }}">
@@ -38,25 +38,33 @@
     {% endif %}
 
 
-    <div class="formulaire-ajouter__field">
-        <label for="startPrize" class="formulaire-ajouter__label">
-            Mise minimale de départ :
-        </label>
-        <input
-            type="number"
-            id="startPrize"
-            name="startPrize"
-            class="formulaire-ajouter__input"
-            step="0.01"
-            min="0.01"
-            value="{{ auction.startPrize }}"
-        >
-    </div>
+    {% if auction.status == 'upcoming' %}
+        <div class="formulaire-ajouter__field">
+            <label for="startPrize" class="formulaire-ajouter__label">
+                Mise minimale de départ :
+            </label>
+            <input
+                type="number"
+                id="startPrize"
+                name="startPrize"
+                class="formulaire-ajouter__input"
+                step="0.01"
+                min="0.01"
+                value="{{ auction.startPrize }}"
+            >
+        </div>
+    {% else %}
+        <div>
+            <p class="formulaire-ajouter__label">Votre enchère est en cours vous ne pouvez pas modifier le prix</p>
+            <p class="formulaire-ajouter__input">{{ auction.startPrize }}$</p>
+            <p class="formulaire-ajouter__label"></p>
+        </div>
+    {% endif %}
 
     {% if errors.startPrize is defined %}
         <span class="error">{{ errors.startPrize }}</span>
     {% endif %}
 
-    <button type="submit" class="formulaire-ajouter__button">Débuter l'enchère</button>
+    <button type="submit" class="formulaire-ajouter__button">Modifier l'enchère</button>
     <a href="stamp" class="formulaire-ajouter__return">Annuler</a>
 </form>

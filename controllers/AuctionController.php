@@ -135,11 +135,38 @@ class AuctionController{
         ]);
     }
 
-
-
-
     public function edit($data){
+        if ($_SESSION['privilege_id'] != 1) {
+            return View::redirect("login");
+        }
+
+        $id = isset($_GET['id']) ? $_GET['id'] : null;
+        if (!$id) {
+            return View::redirect("login");
+        }
+
+        $auctionModel = new Auction();
+        $auction = $auctionModel->selectId($id);
+
+        $currentDate = date('Y-m-d');
+
+        if ($currentDate > $auction['dateEnd']) {
+            $auction['status'] = 'ended';
+            $auction['end_date'] = $auction['dateEnd'];
+        } elseif ($currentDate < $auction['dateStart']) {
+            $auction['status'] = 'upcoming';
+            $auction['start_date'] = $auction['dateStart'];
+        } else {
+            $auction['status'] = 'active';
+        }
+
+        return View::render('auction/edit', [
+            'id' => $id, 
+            'privilege_id' => $_SESSION['privilege_id'], 
+            'auction' => $auction
+        ]);
     }
+
 
     public function update($data){
     }
