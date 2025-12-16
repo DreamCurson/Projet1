@@ -39,7 +39,6 @@
     {% endif %}
 
 
-    {% if auction.status == 'upcoming' %}
         <div class="formulaire-ajouter__field">
             <label for="startPrize" class="formulaire-ajouter__label">
                 Mise minimale de départ :
@@ -52,25 +51,10 @@
                 step="0.01"
                 min="0.01"
                 value="{{ auction.startPrize }}"
+                {% if auction.status != 'upcoming' %} readonly {% endif %}
             >
         </div>
-    {% else %}
-        <div class="formulaire-ajouter__field">
-            <label for="startPrize" class="formulaire-ajouter__label">
-                Mise minimale de départ :
-            </label>
-            <input
-                type="number"
-                id="startPrize"
-                name="startPrize"
-                class="formulaire-ajouter__input"
-                step="0.01"
-                min="0.01"
-                value="{{ auction.startPrize }}"
-                readonly
-            >
-        </div>
-    {% endif %}
+        {% if auction.status != 'upcoming' %}<p class="error formulaire-ajouter__field"> Vous ne pouvez pas modifier le prix comme votre enchère est en cours ! </p>{% endif %}
 
     {% if errors.startPrize is defined %}
         <span class="error">{{ errors.startPrize }}</span>
