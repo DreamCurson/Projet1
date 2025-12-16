@@ -14,3 +14,7 @@
   margin-bottom: 15px;
   border-bottom: 2px solid var(--bleu-basic);
 }
+
+.boite-timbre__grow {
+  flex-grow: 1;
+}

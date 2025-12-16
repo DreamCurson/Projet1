@@ -48,5 +48,6 @@ Route::get('/auctionEdit', 'AuctionController@edit');
 Route::post('/auctionEdit', 'AuctionController@update');
 
 Route::post('/auction', 'BidController@newBid');
+Route::post('/auctionShow', 'BidController@newBid');
 
 Route::dispatch();

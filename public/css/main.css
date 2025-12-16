@@ -6,6 +6,9 @@
 @import "base/success.css";
 
 /* Composant */
+@import "composant/description-general.css";
+@import "composant/description.css";
+@import "composant/presentation-timbre.css";
 @import "composant/profile.css";
 @import "composant/auth.css";
 @import "composant/navigation-enchere.css";

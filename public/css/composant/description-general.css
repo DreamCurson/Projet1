@@ -1,0 +1,47 @@
+.description-general__titre {
+  font-family: var(--lusitana);
+  color: var(--bleu-basic);
+  font-size: 24px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid var(--bleu-basic);
+}
+
+.description-general__elements {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.description-general__prix__temps {
+  display: flex;
+  align-items: center;
+}
+
+.description-general__signaleur {
+  max-width: 15px;
+}
+
+.description-general__chrono {
+  margin-left: 8px;
+  color: var(--bleu-fonce);
+  font-weight: bold;
+}
+
+.description-general__prix {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--bleu-basic);
+}
+
+.description-general__description {
+  font-family: var(--lusitana);
+  color: var(--bleu-fonce);
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  max-width: 80ch;
+}
+
+.description-general__coupcoeur {
+  max-height: 25px;
+}
