@@ -11,7 +11,6 @@
   flex-direction: column;
   justify-content: space-around;
   gap: 20px;
-  block-size: 100%;
   color: #000;
 }
 
@@ -24,6 +23,7 @@
 .filtre__formulaire {
   display: flex;
   flex-direction: row;
+  align-items: center;
   flex-grow: 1;
   gap: 30px;
   justify-content: space-between;
@@ -67,12 +67,14 @@ input[type="range"] {
 
 .filtre__bouton {
   display: flex;
+  align-items: center;
   justify-content: center;
   background-color: var(--bleu-gris);
   color: black;
   padding: 5px 50px;
   border-radius: 30px;
   max-width: 200px;
+  max-height: 30px;
   font-family: var(--lusitana);
   font-weight: 700;
   text-decoration: none;

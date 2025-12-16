@@ -11,9 +11,6 @@
 @import "composant/navigation-enchere.css";
 @import "composant/bloc-enchere.css";
 @import "composant/filtre.css";
-@import "composant/presentation-timbre.css";
-@import "composant/description-general.css";
-@import "composant/description.css";
 @import "composant/badge-banner.css";
 @import "composant/error.css";
 @import "composant/formulaire-ajouter.css";
@@ -35,3 +32,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Lusitana:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lilita+One&display=swap");
 @import "variable/variable.css";
+
+.oneStamp__image {
+  width: 100%;
+  height: 350px;
+  background: var(--bleu-pale);
+  border-radius: 12px;
+}

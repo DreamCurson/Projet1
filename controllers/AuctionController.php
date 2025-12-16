@@ -76,7 +76,7 @@ class AuctionController{
         }
 
         return View::render('auction/index', [
-            'user_id' => $_SESSION['user_id'],
+            'user_id' => $_SESSION['user_id'] ?? null,
             'privilege_id' => $_SESSION['privilege_id'],
             'auctions' => $auctions,
             'conditions' => $conditions,

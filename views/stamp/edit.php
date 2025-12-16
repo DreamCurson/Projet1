@@ -1,4 +1,5 @@
 {{ include('layouts/header-principal.php') }}
+
 <h1 class="formulaire-ajouter__titre">Ajouter un timbre</h1>
 
 <form class="formulaire-ajouter" method="POST">

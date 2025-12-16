@@ -31,7 +31,6 @@
 }
 
 .stamp-card__notice {
-  width: 100%;
   min-height: 180px;
   object-fit: contain;
   display: block;

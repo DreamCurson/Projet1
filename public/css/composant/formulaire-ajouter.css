@@ -95,3 +95,7 @@
   flex-wrap: wrap;
   gap: 15px;
 }
+
+.formulaire-ajouter__preview {
+  width: 100%;
+}
