@@ -37,7 +37,7 @@
                             </a>
                         {% elseif stamp.auction_status == 'ended' %}
                             <!-- L'enchère est terminée -->
-                            <a class="stamp-card__btn red" href="auctionDetail?id={{ stamp.auction_id }}&ended=true">
+                            <a class="stamp-card__btn red" href="auctionDetail?id={{ stamp.auction_id }}">
                                 L'enchère a terminée le {{ stamp.auction_end_date | date('d/m/y') }}
                             </a>
                         {% endif %}

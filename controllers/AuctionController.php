@@ -169,6 +169,32 @@ class AuctionController{
 
 
     public function update($data){
+        $auction = new Auction;
+        $validator = new Validator;
+
+        $validator = new Validator;
+        $validator->field('name', $data['name'])->required()->min(2)->max(45);
+        $validator->field('description', $data['description'])->required()->min(10)->max(500);
+        $validator->field('dateStart', $data['dateStart'])->required();
+        $validator->field('dateEnd', $data['dateEnd'])->required()->afterDate($data['dateStart']);
+        $validator->field('startPrize', $data['startPrize'])->required();
+
+        if($validator->isSuccess()){
+            $update = $auction->update($data, $data['idAuction']);
+            if($update){
+                return view::redirect("auctionDetail?id={$data['idAuction']}");
+            }else{
+                return view::render('error');
+            }
+            
+        }else{
+            $errors = $validator->getErrors();
+            return view::render('auction/edit', [
+                'errors'=> $errors, 
+                'auction' => $data,
+                'privilege_id' => $_SESSION['privilege_id'],
+            ]);
+        } 
     }
 
     public function delete($data){

@@ -2,7 +2,8 @@
 <h1 class="formulaire-ajouter__titre">Modifier votre enchère</h1>
 
 <form class="formulaire-ajouter" method="POST">
-    <input type="hidden" name="timbre_idTimbre" value="{{ id }}">
+    <input type="hidden" name="timbre_idTimbre" value="{{ auction.timbre_idTimbre }}">
+    <input type="hidden" name="idAuction" value="{{ id }}">
 
     <div class="formulaire-ajouter__field">
         <label for="name" class="formulaire-ajouter__label">Nom de l'enchère :</label>
@@ -54,10 +55,20 @@
             >
         </div>
     {% else %}
-        <div>
-            <p class="formulaire-ajouter__label">Votre enchère est en cours vous ne pouvez pas modifier le prix</p>
-            <p class="formulaire-ajouter__input">{{ auction.startPrize }}$</p>
-            <p class="formulaire-ajouter__label"></p>
+        <div class="formulaire-ajouter__field">
+            <label for="startPrize" class="formulaire-ajouter__label">
+                Mise minimale de départ :
+            </label>
+            <input
+                type="number"
+                id="startPrize"
+                name="startPrize"
+                class="formulaire-ajouter__input"
+                step="0.01"
+                min="0.01"
+                value="{{ auction.startPrize }}"
+                readonly
+            >
         </div>
     {% endif %}
 
