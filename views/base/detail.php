@@ -114,7 +114,7 @@
                 <div class="description__element">
                   <h3 class="description__titre-element">Utilisateur à avoir miser en dernier :</h3>
                   <p class="description__valeur-element bleu-gras">
-                    {{ lastBidder }}
+                    {{ lastBidder ?: 'Aucun enchérisseur' }}
                   </p>
                 </div>
               </div>

@@ -59,9 +59,11 @@ class BaseController{
 
         $lastBid = $bidModel->getLastBidByAuction($auction['idAuction']);
         $lastBidder = null;
-        if ($lastBid) {
+
+        if (!empty($lastBid) && isset($lastBid['user_idUser'])) {
             $userModel = new User();
-            $lastBidder = $userModel->selectId($lastBid['user_idUser']);
+            $user = $userModel->selectId($lastBid['user_idUser']);
+            $lastBidder = $user['name'] ?? null;
         }
 
         $totalBids = $bidModel->countBy('auction_idAuction', $auction['idAuction']);
@@ -74,7 +76,7 @@ class BaseController{
             'colors' => $colors,
             'conditions' => $conditions,
             'contries' => $contries,
-            'lastBidder' => $lastBidder['name'],
+            'lastBidder' => $lastBidder,
             'totalBid' => $totalBids
         ]);
     }
