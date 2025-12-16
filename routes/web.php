@@ -16,7 +16,7 @@ Route::post('/inscription', 'AuthController@create');
 
 Route::get('/guest', 'AuthController@guest');
 
-// BaseController : Gestion de la page principal
+// BaseController : Gestion de la page principal et de la page des détails d'une enchère
 Route::get('/lordStampee', 'BaseController@index');
 Route::get('/auctionShow', 'BaseController@detail');
 

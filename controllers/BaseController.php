@@ -10,13 +10,9 @@ class BaseController{
         }
     }
 
+
     public function index(){
         return View::render("base/index", ['privilege_id' => $_SESSION['privilege_id']]);
-    }
-
-    public function detail($data){
-        var_dump($data);
-
     }
 
 }

@@ -50,8 +50,6 @@
     </div>
 </section>
 
-
-
 <div class="navigation-enchere">
     <nav class="navigation-enchere__bloc">
         <ul class="navigation-enchere__elements">
@@ -104,7 +102,7 @@
                             </span>
                         </div>
                         </div>
-                        <a href="#" class="bloc-enchere__lien">Voir l’enchère</a>
+                        <a href="auctionShow?id={{ auction.idAuction }}" class="bloc-enchere__lien">Voir l’enchère</a>
                     </article>
                 {% endif %}
             {% endfor %}
