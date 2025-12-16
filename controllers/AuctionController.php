@@ -18,15 +18,13 @@ class AuctionController{
 
     public function index() {
         $auctionModel = new Auction();
-        
         $auctions = $auctionModel->select(); 
         $imageModel = new Image();
         
-        $currentDate = date('Y-m-d'); 
-
-        // Parcour toute les enchères
+        $currentDate = date('Y-m-d H:i:s');
+        
+        // Parcour toutes les enchères
         foreach ($auctions as &$auction) {
-            // Détermine état de l'enchère selon date actuelle
             if ($currentDate >= $auction['dateStart'] && $currentDate <= $auction['dateEnd']) {
                 $auction['status'] = 'active';
             } elseif ($currentDate < $auction['dateStart']) {
@@ -37,18 +35,25 @@ class AuctionController{
                 $auction['end_date'] = $auction['dateEnd'];
             }
 
-            // Récupérer le prix actuel de l'enchère méthode getCurrentPrice() CRUD
-            // Eetourne soit le prix de l'enchère (si mise), soit le prix de départ (aucune mise)
+            if ($auction['status'] == 'active') {
+                $endTime = strtotime($auction['dateEnd'] . ' 23:59:59');
+                $remainingTime = $endTime - strtotime($currentDate);
+                
+                if ($remainingTime > 0) {
+                    $remainingDays = floor($remainingTime / (60 * 60 * 24));
+                    $auction['remaining_time'] = sprintf("%2d jours", $remainingDays);
+                }
+            }
+
             $auction['current_price'] = $auctionModel->getCurrentPrice($auction['idAuction']);
 
             $images = $imageModel->selectBy('timbre_idTimbre', $auction['timbre_idTimbre']);
-            
-            // Converti chaque image en base64 pour l'affichage
             foreach ($images as &$img) {
                 $img['file'] = base64_encode($img['file']);
             }
             unset($img);
 
+            // Add images to the auction data
             $auction['images'] = $images;
         }
 
@@ -58,6 +63,8 @@ class AuctionController{
             'auctions' => $auctions
         ]);
     }
+
+
 
     public function create($data){
         if ($_SESSION['privilege_id'] != 1) {
@@ -131,6 +138,8 @@ class AuctionController{
         } else {
             return View::redirect("error");
         }
+
+        $auction['current_price'] = $auctionModel->getCurrentPrice($auction['idAuction']);
 
         return View::render('auction/show', [
             'auction' => $auction

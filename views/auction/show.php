@@ -7,6 +7,11 @@
     <p class="oneStamp__field"><strong>Date de début :</strong> {{ auction.dateStart|date('Y-m-d') }}</p>
     <p class="oneStamp__field"><strong>Date de fin :</strong> {{ auction.dateEnd|date('Y-m-d') }}</p>
     <p class="oneStamp__field"><strong>Prix de départ :</strong> {{ auction.startPrize }}$</p>
+    {% if auction.status == 'active' %}
+    <p class="oneStamp__field"><strong>Plus haute mise en cours :</strong> {{ auction.current_price }}$</p>
+    {% elseif auction.status == 'ended' %}
+    <p class="oneStamp__field"><strong>Prix final :</strong> {{ auction.current_price }}$</p>
+    {% endif %}
 
     {% if auction.status == 'active' %}
         <p class="oneStamp__field"><strong>Statut :</strong> En cours</p>
