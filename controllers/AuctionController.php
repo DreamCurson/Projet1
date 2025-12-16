@@ -18,15 +18,15 @@ class AuctionController{
 
     public function index() {
         $auctionModel = new Auction();
-        $auctions = $auctionModel->select(); 
         
+        $auctions = $auctionModel->select(); 
         $imageModel = new Image();
+        
+        $currentDate = date('Y-m-d'); 
 
-        $currentDate = date('Y-m-d');
-
-        // Traiter chaque enchère
+        // Parcour toute les enchères
         foreach ($auctions as &$auction) {
-            // Vérifier si l'enchère a commencé, est active, ou est terminée
+            // Détermine état de l'enchère selon date actuelle
             if ($currentDate >= $auction['dateStart'] && $currentDate <= $auction['dateEnd']) {
                 $auction['status'] = 'active';
             } elseif ($currentDate < $auction['dateStart']) {
@@ -37,25 +37,27 @@ class AuctionController{
                 $auction['end_date'] = $auction['dateEnd'];
             }
 
-            // Récupérer les images associées à cette enchère
-            $images = $imageModel->selectBy('timbre_idTimbre', $auction['timbre_idTimbre']);
+            // Récupérer le prix actuel de l'enchère méthode getCurrentPrice() CRUD
+            // Eetourne soit le prix de l'enchère (si mise), soit le prix de départ (aucune mise)
+            $auction['current_price'] = $auctionModel->getCurrentPrice($auction['idAuction']);
 
-            // encoder image en base64
+            $images = $imageModel->selectBy('timbre_idTimbre', $auction['timbre_idTimbre']);
+            
+            // Converti chaque image en base64 pour l'affichage
             foreach ($images as &$img) {
                 $img['file'] = base64_encode($img['file']);
             }
             unset($img);
 
-            // Assigne image à l'enchère
             $auction['images'] = $images;
         }
 
         return View::render('auction/index', [
+            'user_id' => $_SESSION['user_id'],
             'privilege_id' => $_SESSION['privilege_id'],
             'auctions' => $auctions
         ]);
     }
-
 
     public function create($data){
         if ($_SESSION['privilege_id'] != 1) {

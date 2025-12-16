@@ -3,6 +3,7 @@
 @import "base/miser.css";
 @import "base/boite-timbre.css";
 @import "base/texte.css";
+@import "base/success.css";
 
 /* Composant */
 @import "composant/profile.css";

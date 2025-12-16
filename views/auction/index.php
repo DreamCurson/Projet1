@@ -37,14 +37,18 @@
                         <h3 class="bloc-enchere__sous-titre">{{ auction.name }}</h3>
                         <div class="bloc-enchere__textes">
                             <p class="bloc-enchere__texte">{{ auction.description }}</p>
-                            <p class="bloc-enchere__texte">Prix actuel : $</p>
+                            <p class="bloc-enchere__texte">Prix actuel : {{ auction.current_price }} $</p>
                             <div class="miser">
-                                <span class="miser__texte">
-                                    <label for="miser{{ auction.id }}">Miser :</label>
-                                    <input type="number" id="miser{{ auction.id }}" min="{{ auction.current_price }}" step="0.50" value="{{ auction.current_price }}" class="miser__input" />
-                                </span>
-                                <button type="button" class="miser__confirmer">Soumettre</button>
-                            </div>
+                            <span class="miser__texte">
+                                <label for="miser{{ auction.id }}">Miser :</label>
+                                <form method="POST">
+                                    <input type="number" id="miser{{ auction.id }}" name="bid" min="{{ auction.current_price }}" step="0.50" value="{{ auction.current_price }}" class="miser__input" />
+                                    <input type="hidden" name="auction_id" value="{{ auction.idAuction }}" />
+                                    <input type="hidden" name="user_id" value="{{ user_id }}" />
+                                    <button type="submit" class="miser__confirmer">Soumettre</button>
+                                </form>
+                            </span>
+                        </div>
                         </div>
                         <a href="#" class="bloc-enchere__lien">Voir l’enchère</a>
                     </article>
