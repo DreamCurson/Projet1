@@ -9,7 +9,7 @@ use App\Models\Auction;
 class BidController{
     public function __construct() {
         session_start();
-        if (!isset($_SESSION['privilege_id'])) {
+        if ($_SESSION['privilege_id'] != 1) {
             return View::redirect("login");
         }
     }

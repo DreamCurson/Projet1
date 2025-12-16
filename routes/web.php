@@ -18,6 +18,7 @@ Route::get('/guest', 'AuthController@guest');
 
 // BaseController : Gestion de la page principal
 Route::get('/lordStampee', 'BaseController@index');
+Route::get('/auctionShow', 'BaseController@detail');
 
 Route::get('/profil', 'ClientController@index');
 Route::get('/editProfil', 'ClientController@edit');
