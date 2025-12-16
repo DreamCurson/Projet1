@@ -7,6 +7,9 @@ use App\Models\Auction;
 use App\Models\Stamp;
 use App\Models\Image;
 
+use App\Models\Color;
+use App\Models\Condition;
+use App\Models\Contry;
 
 class AuctionController{
     public function __construct() {
@@ -20,6 +23,22 @@ class AuctionController{
         $auctionModel = new Auction();
         $auctions = $auctionModel->select(); 
         $imageModel = new Image();
+        $conditionModel = new Condition();
+        $colorModel = new Color();
+        $countryModel = new Contry();
+        
+        $conditions = $conditionModel->select(); 
+        $colors = $colorModel->select(); 
+        $countries = $countryModel->select(); 
+
+        $filters = [
+            'condition' => isset($_GET['condition']) ? $_GET['condition'] : 'all',
+            'country' => isset($_GET['pays']) ? $_GET['pays'] : 'all',
+            'color' => isset($_GET['couleur']) ? $_GET['couleur'] : 'all',
+            'certified' => isset($_GET['certifie']) ? $_GET['certifie'] : 'all'
+        ];
+
+        $auctions = $auctionModel->getFilteredAuctions($filters);
         
         $currentDate = date('Y-m-d H:i:s');
         
@@ -53,14 +72,17 @@ class AuctionController{
             }
             unset($img);
 
-            // Add images to the auction data
             $auction['images'] = $images;
         }
 
         return View::render('auction/index', [
             'user_id' => $_SESSION['user_id'],
             'privilege_id' => $_SESSION['privilege_id'],
-            'auctions' => $auctions
+            'auctions' => $auctions,
+            'conditions' => $conditions,
+            'colors' => $colors,
+            'countries' => $countries,
+            'filters' => $filters 
         ]);
     }
 
