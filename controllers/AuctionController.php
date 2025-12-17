@@ -164,7 +164,8 @@ class AuctionController{
         $auction['current_price'] = $auctionModel->getCurrentPrice($auction['idAuction']);
 
         return View::render('auction/show', [
-            'auction' => $auction
+            'auction' => $auction,
+            'privilege_id' => $_SESSION['privilege_id']
         ]);
     }
 
